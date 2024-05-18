@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import Link from "next/link"
 import {
@@ -8,12 +10,43 @@ import {
     Package2,
     ShoppingCart,
     Users,
+    icons,
   } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button" 
+import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils'
  
-
 export default function Sidebar() {
+  const pathName = usePathname()
+  const sideBarLinks =[
+    {
+      name: "Dashboard",
+      path: "/dashboard",
+      icon: Home,
+      badgeCount: 6,
+    },
+    {
+      name: "Patients",
+      path: "/dashboard/patients",
+      icon: Home,
+    },
+    {
+      name: "Appointments",
+      path: "/dashboard/appointments",
+      icon: Home,
+    },
+    {
+      name: "Settings",
+      path: "/dashboard/settings",
+      icon: Home,
+    },
+    {
+      name: "Logout",
+      path: "/dashboard/logout",
+      icon: Home,
+    },
+  ]
   return (
     <div className="hidden border-r bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
@@ -28,15 +61,25 @@ export default function Sidebar() {
           </div>
           <div className="flex-1">
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+              {sideBarLinks.map((item, i) => {
+                const Icon =item.icon
+                return(
+                    <Link
+                    key={i}
+                    href={item.path}
+                    className={cn("flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary", pathName === item.path ? "bg-muted text-primary":""
+                  )}
+                    >
+                  <Home className="h-4 w-4" />
+                  {item.name}
+                  {item.badgeCount && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                  {item.badgeCount}
+                </Badge>}
+                </Link>
+                )
+              })}
               <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <Home className="h-4 w-4" />
-                Dashboard
-              </Link>
-              <Link
-                href="#"
+                href="admin"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <ShoppingCart className="h-4 w-4" />
@@ -47,7 +90,7 @@ export default function Sidebar() {
               </Link>
               <Link
                 href="#"
-                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+                className=""
               >
                 <Package className="h-4 w-4" />
                 Products{" "}
