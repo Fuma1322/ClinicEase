@@ -22,7 +22,6 @@ export default async function Sidebar() {
       name: "Dashboard",
       path: "/dashboard",
       icon: LucideHome,
-      badgeCount: 6,
     },
     {
       name: "Patients",
@@ -33,6 +32,7 @@ export default async function Sidebar() {
       name: "Appointments",
       path: "/dashboard/appointments",
       icon: Users,
+      badgeCount: 6,
     },
     {
       name: "Settings",
