@@ -4,47 +4,45 @@ import React from 'react'
 import Link from "next/link"
 import {
     Bell,
-    Home,
-    LineChart,
-    Package,
-    Package2,
-    ShoppingCart,
+    LucideHome,
+    Settings,
+    UserCircle2Icon,
+    UserPlus2Icon,
     Users,
-    icons,
   } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button" 
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
  
-export default function Sidebar() {
+export default async function Sidebar() {
   const pathName = usePathname()
   const sideBarLinks =[
     {
       name: "Dashboard",
       path: "/dashboard",
-      icon: Home,
+      icon: LucideHome,
       badgeCount: 6,
     },
     {
       name: "Patients",
       path: "/dashboard/patients",
-      icon: Home,
+      icon: UserPlus2Icon,
     },
     {
       name: "Appointments",
       path: "/dashboard/appointments",
-      icon: Home,
+      icon: Users,
     },
     {
       name: "Settings",
       path: "/dashboard/settings",
-      icon: Home,
+      icon: Settings,
     },
     {
       name: "Logout",
       path: "/dashboard/logout",
-      icon: Home,
+      icon: UserCircle2Icon,
     },
   ]
   return (
@@ -61,16 +59,17 @@ export default function Sidebar() {
           </div>
           <div className="flex-1">
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-              {sideBarLinks.map((item, i) => {
-                const Icon =item.icon
+              {sideBarLinks.map((item,i) => {
+                const Icon = item.icon
                 return(
                     <Link
                     key={i}
                     href={item.path}
-                    className={cn("flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary", pathName === item.path ? "bg-muted text-primary":""
+                    className={cn("flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary", 
+                    pathName === item.path ? "bg-muted text-primary":""
                   )}
                     >
-                  <Home className="h-4 w-4" />
+                  <Icon className="h-4 w-4" />
                   {item.name}
                   {item.badgeCount && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
                   {item.badgeCount}
@@ -78,37 +77,6 @@ export default function Sidebar() {
                 </Link>
                 )
               })}
-              <Link
-                href="admin"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <ShoppingCart className="h-4 w-4" />
-                Orders
-                <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                  6
-                </Badge>
-              </Link>
-              <Link
-                href="#"
-                className=""
-              >
-                <Package className="h-4 w-4" />
-                Products{" "}
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <Users className="h-4 w-4" />
-                Customers
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <LineChart className="h-4 w-4" />
-                Analytics
-              </Link>
             </nav>
           </div>
         </div>
