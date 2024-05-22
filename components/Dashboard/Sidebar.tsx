@@ -4,6 +4,7 @@ import React from 'react'
 import Link from "next/link"
 import {
     Bell,
+    Hospital,
     LucideHome,
     Settings,
     UserCircle2Icon,
@@ -29,6 +30,11 @@ export default async function Sidebar() {
       icon: UserPlus2Icon,
     },
     {
+      name: "Clinics",
+      path: "/dashboard/clinics",
+      icon: Hospital,
+    },
+    {
       name: "Appointments",
       path: "/dashboard/appointments",
       icon: Users,
@@ -50,7 +56,7 @@ export default async function Sidebar() {
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2 font-semibold">
-              <span className="text-indigo-600">ClinicEase</span>
+              <span className="text-sky-400">ClinicEase</span>
             </Link>
             <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
               <Bell className="h-4 w-4" />

@@ -17,6 +17,7 @@ import {
   import Link from "next/link"
   import {
     CircleUser,
+    Hospital,
     LucideHome,
     Menu,
     Search,
@@ -28,6 +29,7 @@ import {
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import ModeToggle from '../ModeToggle'
+import path from 'path'
 
 export default async function NavBar() {
   const pathName = usePathname()
@@ -42,6 +44,11 @@ export default async function NavBar() {
       name: "Patients",
       path: "/dashboard/patients",
       icon: UserPlus2Icon,
+    },
+    {
+      name: "Clinics",
+      path: "/dashboard/clinics",
+      icon: Hospital,
     },
     {
       name: "Appointments",
