@@ -1,7 +1,7 @@
 "use client"
 
 import { Instagram, Linkedin, Twitter, Youtube } from 'lucide-react'
-import { title } from 'process'
+
 import React from 'react'
 
 export default function Footer() {
@@ -22,7 +22,7 @@ export default function Footer() {
                     name: 'Team'
                 },
                 {
-                    href: 'javascript:void()',
+                    href: '/join/clinics',
                     name: 'Careers'
                 },
             ],
@@ -75,21 +75,25 @@ export default function Footer() {
             title: "Linkedin",
             href: "www.linkedin.com",
             icon: Linkedin,
+            color: "text-blue-600",
         },
         {
             title: "Twitter",
             href: "www.linkedin.com",
             icon: Twitter,
+            color: "text-blue-400",
         },
         {
             title: "Instagram",
             href: "www.linkedin.com",
             icon: Instagram,
+            color: "text-pink-400"
         },
         {
             title: "Youtube",
             href: "www.linkedin.com",
             icon: Youtube,
+            color: "text-red-600"
         },
     ]
   return (
@@ -133,7 +137,7 @@ export default function Footer() {
             </div>
             <div className="mt-8 py-6 border-t items-center justify-between sm:flex">
                 <div className="mt-4 sm:mt-0">
-                    &copy; 2024 ClinicEase All rights reserved.
+                    &copy; {new Date().getFullYear()} ClinicEase All rights reserved.
                 </div>
                 <div className="mt-6 sm:mt-0">
                     <ul className="flex items-center space-x-4">
@@ -143,22 +147,15 @@ export default function Footer() {
                               return(
                                 <li key={i} 
                                 className="w-10 h-10 border rounded-full flex items-center justify-center">
-                                    <a href={item.href}>
-                                    <Icon className='w-6 h-6' />
-                                    </a>
+                                 <a href={item.href} className={item.color}>
+                                    <Icon className='w-6 h-6'/>
+                                 </a>
                                 </li>
                               )  
                             })}
                     </ul>
                 </div>
             </div>
-            <style jsx>{`
-                .svg-icon path,
-                .svg-icon polygon,
-                .svg-icon rect {
-                    fill: currentColor;
-                }
-            `}</style>
         </footer>
   )
 }
