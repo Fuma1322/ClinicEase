@@ -1,9 +1,12 @@
 'use client'
 
+import React from "react";
 import { useState } from 'react'
+import { FlipWords } from "../ui/flip-words";
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const words = ["To", "Clinic", ];
 
   return (
     <div className="bg-white">
@@ -21,13 +24,16 @@ export default function Hero() {
           />
         </div>
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+        <div className="h-[15rem] flex justify-center items-center">
+            <div className="text-4xl mx-auto font-bold tracking-tight text-gray-900 dark:text-gray-800 sm:text-6xl">
+                From Screen
+                <FlipWords words={words} /> <br />
+                Your Health Is In Your Hands
+            </div>
+            </div>
+          <div className="hidden sm:flex sm:justify-center">
           </div>
-          <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              From Screen To Clinic, Your Health Is In Your Hands
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className=" text-lg leading-8 text-gray-600">
               Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
               fugiat veniam occaecat fugiat aliqua.
             </p>
@@ -38,7 +44,6 @@ export default function Hero() {
               >
                 Get started
               </a>
-            </div>
           </div>
         </div>
         <div
