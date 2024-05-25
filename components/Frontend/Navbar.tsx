@@ -18,7 +18,7 @@ export default function Navbar() {
       <header className=" inset-x-0 fixed top-0 z-50 h-auto bg-black opacity-59">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
-            <h2 className='font-bold sm:text-5xl text-sky-500'>ClinicEase</h2>
+            <h2 className='font-bold sm:text-5xl text-sky-300'>ClinicEase</h2>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -40,7 +40,7 @@ export default function Navbar() {
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a
               href="/dashboard"
-              className="rounded-md bg-sky-500 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-md bg-sky-300 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
            >
             Log In
           </a>
@@ -48,9 +48,9 @@ export default function Navbar() {
         </nav>
         <Dialog className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
               <div className="fixed inset-0 z-50" />
-              <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-black opacity-90 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+              <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-black opacity-96 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                 <div className="flex items-center justify-between">
-                <h2 className='font-bold sm:text-2xl text-sky-500'>ClinicEase</h2>
+                <h2 className='font-bold sm:text-2xl text-sky-300'>ClinicEase</h2>
                   <button
                     type="button"
                     className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -67,7 +67,7 @@ export default function Navbar() {
                         <a
                           key={item.name}
                           href={item.href}
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-400 hover:bg-gray-50"
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-400 hover:bg-gray-600"
                         >
                           {item.name}
                         </a>
@@ -76,10 +76,13 @@ export default function Navbar() {
                     <div className="py-6">
                       <a
                         href="/dashboard"
-                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-400 hover:bg-gray-600"
                       >
                         Log in
                       </a>
+                    </div>
+                    <div>
+                      <img className='items-center justify-center flex' src="/logo.png" alt="logo" />
                     </div>
                   </div>
                 </div>
