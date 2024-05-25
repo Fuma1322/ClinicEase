@@ -26,7 +26,7 @@ export default function Hero() {
           />
         </div>
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 text-center">
-        <div className="h-[20rem] flex justify-center items-center">
+        <div className="h-[23rem] flex justify-center items-center">
             <div className="text-6xl mx-auto font-bold tracking-tight text-black dark:text-gray-300 sm:text-6xl">
                 From Screen To
                 <FlipWords words={words} /> <br />
