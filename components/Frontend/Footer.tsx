@@ -97,13 +97,13 @@ export default function Footer() {
         },
     ]
   return (
-    <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8 mt-[2%]">
+    <footer className="text-gray-400 px-4 py-5 max-w-screen-xl mx-auto md:px-8 mt-[2%]  dark:bg-black [mask-image:radial-gradient(black)">
             <div className="gap-6 justify-between md:flex">
                 <div className="flex-1">
                     <div className="max-w-xs">
                         <h2 className='font-bold sm:text-3xl text-sky-400'>ClinicEase</h2>
                         <p className="leading-relaxed mt-2 text-[13px]">
-                            From Screen To Screen, Your Health Is In Your Hands
+                            From Screen To Clinic, Your Health Is In Your Hands
                         </p>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ export default function Footer() {
                                 className="space-y-4"
                                 key={idx}
                             >
-                                <h4 className="text-gray-800 font-medium">
+                                <h4 className="text-gray-50 font-bold">
                                     { item.label }
                                 </h4>
                                 {
