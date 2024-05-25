@@ -3,10 +3,13 @@
 import React from "react";
 import { useState } from 'react'
 import { FlipWords } from "../ui/flip-words";
+import { FlipWordsCopy } from "../ui/flip-words copy";
+
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const words = ["Screen", "To", "Clinic"];
+  const words = ["Clinic"];
+  const word = ["Your", "Hands"];
 
   return (
       <div className="relative isolate px-6 pt-14 lg:px-8 ">
@@ -22,24 +25,25 @@ export default function Hero() {
             }}
           />
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-        <div className="h-[15rem] flex justify-center items-center">
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 text-center">
+        <div className="h-[20rem] flex justify-center items-center">
             <div className="text-6xl mx-auto font-bold tracking-tight text-black dark:text-gray-300 sm:text-6xl">
-                From
+                From Screen To
                 <FlipWords words={words} /> <br />
-                Your Health In Your Hands
+                Your Health Is In
+                <FlipWordsCopy words={word} /> <br />
             </div>
             </div>
           <div className="hidden sm:flex sm:justify-center">
           </div>
-            <p className=" text-lg leading-8 text-gray-400">
+            <p className="text-lg leading-8 text-gray-400">
               Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
               fugiat veniam occaecat fugiat aliqua.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="/dashboard"
-                className="rounded-md bg-sky-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-md bg-sky-300 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Get started
               </a>
