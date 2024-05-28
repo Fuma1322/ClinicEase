@@ -1,3 +1,4 @@
+import Accordion from '@/components/Frontend/FAQ'
 import Footer from '@/components/Frontend/Footer'
 import Hero from '@/components/Frontend/Hero'
 import Navbar from '@/components/Frontend/Navbar'
@@ -9,6 +10,7 @@ export default function Layout({children}:{children:ReactNode}) {
     <Navbar />
     <Hero />
     <div className='mt-60px'>{children}</div>
+    <Accordion />
     <Footer />
     </div>
   )
