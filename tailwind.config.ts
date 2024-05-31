@@ -86,6 +86,7 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
+    require('@tailwindcss/forms'),
     function ({ matchUtilities, theme }: any) {
       matchUtilities(
         {

@@ -28,8 +28,7 @@ import {
   } from "lucide-react"
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import ModeToggle from '../ModeToggle'
-import path from 'path'
+import { ModeToggle } from '../ui/modetoggle'
 
 export default async function NavBar() {
   const pathName = usePathname()
