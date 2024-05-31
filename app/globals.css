@@ -68,3 +68,10 @@
     background-repeat: no-repeat;
     background-position: center center;
   }
+
+  .linear-bh {
+    background-image: url("/register.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
