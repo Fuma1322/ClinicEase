@@ -1,6 +1,44 @@
+"use client"
+import {type RegisterInputProps } from "@/types/types";
 import Link from "next/link";
+import { useForm } from "react-hook-form"
+import TextInput from "../FormInputs/TextInput";
+import SubmitButton from "../FormInputs/SubmitButton";
+import { useState } from "react";
+import { createUser } from "@/actions/users";
+import { UserRole } from "@prisma/client";
+import toast from "react-hot-toast";
 
-export default function RegisterForm() {
+
+export default function RegisterForm({role="USER"}:{role?:UserRole}) {
+  const [isLoading, setIsLoading] = useState(false)
+   const {
+    register,
+    handleSubmit,
+    reset,
+    formState:{errors},
+  } = useForm<RegisterInputProps>();
+  async function onSubmit (data: RegisterInputProps) {
+    // console.log(data);
+    setIsLoading(true);
+
+    data.role = role;
+    try {
+      const user = await createUser(data)
+      if (user&&user.status===200){
+        console.log("User Created Successfully")
+        reset();
+        setIsLoading(false);
+        toast.success("User Created Successfully")
+        console.log(user.data);
+      } else{
+        console.log(user.error)
+      }
+      console.log(user);
+    } catch (error) {
+      console.log(error);
+    }
+  }
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -15,98 +53,37 @@ export default function RegisterForm() {
           </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
-              <div>
-                <label htmlFor="fname" className="block text-sm font-medium leading-6 text-gray-400">
-                  First Name
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="fname"
-                    name="fname"
-                    type="text"
-                    autoComplete="fname"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="lname" className="block text-sm font-medium leading-6 text-gray-400">
-                  Last Name
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="lname"
-                    name="lname"
-                    type="text"
-                    autoComplete="lname"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-400">
-                  Email Address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="pnum" className="block text-sm font-medium leading-6 text-gray-400">
-                  Phone Number
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="pnum"
-                    name="pnum"
-                    type="text"
-                    autoComplete="pnum"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <TextInput 
+              label="Full Name" 
+              register={register} 
+              name="fullName" 
+              errors={errors} 
+              />
+              <TextInput 
+              label="Email Address" 
+              register={register} 
+              name="email"
+              type="email"
+              errors={errors} 
+              />
+              <TextInput 
+              label="Phone Number" 
+              register={register} 
+              name="phone"
+              type="tel"
+              errors={errors} 
+              />
+              <TextInput 
+              label="Password" 
+              register={register} 
+              name="password"
+              type="password"
+              errors={errors} 
+              />
   
               <div>
-                <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-400">
-                    Password
-                  </label>
-                  <div className="text-sm">
-                    <a href="#" className="font-semibold text-sky-400 hover:text-indigo-500">
-                      Forgot password?
-                    </a>
-                  </div>
-                </div>
-                <div className="mt-2">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-  
-              <div>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Register
-                </button>
+                <SubmitButton title="Register" isLoading={isLoading} loadingTitle={"Please Wait..."} />
               </div>
             </form>
   
@@ -122,3 +99,4 @@ export default function RegisterForm() {
         </div>
     )
   }
+  
