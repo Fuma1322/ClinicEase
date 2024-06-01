@@ -111,7 +111,7 @@ export default function RegisterForm() {
             </form>
   
             <p className="mt-10 text-center text-sm text-gray-500">
-              Already have Account?{' '}
+              Already Have Account?{' '}
               <Link
                href="/login" 
                className="font-semibold leading-6 text-sky-400 hover:text-indigo-500">
