@@ -7,9 +7,7 @@
     "env": {
       "DATABASE_URL": "mongodb+srv://clinicease:83pgk7lqO0twAxtv@clinicease.hz1wmps.mongodb.net/ClinicApp"
     },
-    "build": {
-      "build": {
+    "build": {  
         "build": "prisma generate"
       }
     }
-  }
