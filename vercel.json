@@ -1,0 +1,15 @@
+{
+    "builds": [
+      { "src": "vercel-build.js", "use": "@vercel/node" }
+    ],
+    "version": 2,
+    "functions": { "api/**/*.js": { "runtime": "nodejs12" } },
+    "env": {
+      "DATABASE_URL": "mongodb+srv://clinicease:83pgk7lqO0twAxtv@clinicease.hz1wmps.mongodb.net/ClinicApp"
+    },
+    "build": {
+      "commands": {
+        "build": "prisma generate"
+      }
+    }
+  }

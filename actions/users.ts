@@ -48,7 +48,7 @@ export async function createUser (formdata:RegisterInputProps) {
      const firstName = newUser.name.split(" ")[0];
      const linkText = "Verify your Account ";
      const message =
-       "Thank you for registering with Gecko. To complete your registration and verify your email address, please enter the following 6-digit verification code on our website :";
+       "Thank you for registering with Clinicease. To complete your registration and verify your email address, please enter the following 6-digit verification code on our website :";
      const sendMail = await resend.emails.send({
        from: "ClinicEase <clinic-ease.vercel.app>",
        to: email,
