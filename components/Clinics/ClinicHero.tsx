@@ -2,6 +2,20 @@ import React, { useState } from "react";
 import CustomButton from "../ui/CustomButton";
 
 export default function Hero() {
+  const cards = [
+    {
+      title: "Enroll Your Clinic",
+      description: "Start a new application to join our network of healthcare providers",
+      link: "/",
+      linkTitle: "Start New Application"
+    },
+    {
+        title: "Resume Application",
+        description: "Pick up where you left off and complete enrolling your clinic",
+        link: "/",
+        linkTitle: "Resume Application"
+      },  
+    ]
   return (
     <>
       <div className="relative bg-black pb-[110px] pt-[120px] lg:pt-[150px]">
@@ -9,28 +23,30 @@ export default function Hero() {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-5/12">
               <div className="hero-content">
-                <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-dark sm:text-[42px] lg:text-[40px] xl:text-5xl">
-                  Kickstart Startup Website with TailGrids
+                <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-gray-400 sm:text-[42px] lg:text-[40px] xl:text-5xl">
+                  Join ClinicEase to lessen the long queues at your clinic! 
                 </h1>
                 <p className="mb-8 max-w-[480px] text-base text-body-color ">
-                  With TailGrids, business and students thrive together.
-                  Business can perfectly match their staffing to changing demand
-                  throughout the dayed.
+                  With TailGrids, business and students thrive together
                 </p>
-                <ul className="flex flex-wrap items-center">
-                  <li>
-                  <CustomButton 
-                    title="Register"
-                    href="/register?role='CLINIC'"
-                    className="bg-sky-300 hover:bg-indigo-600"/>
-                  </li>
-                </ul>
+                <div className="grid gap-4 md:grid-cols-2 sm:grid-cols-1 ">
+                      {cards.map((card, i) => (
+                          <div key={i} className="bg-gray-900 p-4 rounded-lg shadow-2xl">
+                              <h3 className="text-2xl font-semibold text-gray-200">{card.title}</h3>
+                                <p className="text-gray-400 text-xs py-3">{card.description}</p>
+                                  <CustomButton
+                                  title={card.linkTitle}
+                                  href={card.link}
+                                  className="bg-sky-300 hover:bg-indigo-600"
+                                  />
+                          </div>
+                        ))}
+                  </div>
                 <div className="clients pt-16">
-                  <h6 className="mb-6 flex items-center text-xs font-normal text-body-color ">
+                  <h6 className="mb-6 flex items-center text-xs font-bold text-body-color ">
                     Some Of Our Clients
                     <span className="ml-3 inline-block h-px w-8 bg-body-color"></span>
                   </h6>
-
                   <div className="flex items-center space-x-4">
                     <SingleImage
                       href="#"
