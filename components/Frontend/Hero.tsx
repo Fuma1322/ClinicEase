@@ -4,6 +4,8 @@ import React from "react";
 import { useState } from 'react'
 import { FlipWords } from "../ui/flip-words";
 import { FlipWordsCopy } from "../ui/flip-words copy";
+import { Button } from "../ui/moving-border"
+import Link from "next/link";
 
 
 export default function Hero() {
@@ -12,7 +14,7 @@ export default function Hero() {
   const word = ["Your", "Hands"];
 
   return (
-      <div className="relative isolate px-6 pt-14 lg:px-8 ">
+      <div className="relative isolate px-6 pt-14 lg:px-8 -top-20">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"
@@ -41,12 +43,14 @@ export default function Hero() {
               fugiat veniam occaecat fugiat aliqua.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="/dashboard"
-                className="rounded-md bg-sky-300 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Get started
-              </a>
+              <Link href="/login">
+            <Button
+              borderRadius="1.55rem"
+              className=" dark:bg-slate-600 text-black dark:text-white border-neutral-600 dark:border-slate-800"
+             >
+              Get Started
+            </Button>
+            </Link>
           </div>
           
         </div>

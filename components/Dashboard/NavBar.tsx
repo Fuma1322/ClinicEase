@@ -28,9 +28,8 @@ import {
   } from "lucide-react"
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { ModeToggle } from '../ui/modetoggle'
 
-export default async function NavBar() {
+export default function NavBar() {
   const pathName = usePathname()
   const sideBarLinks =[
     {
@@ -113,7 +112,6 @@ export default async function NavBar() {
         </div>
       </form>
     </div>
-    <ModeToggle />
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full">

@@ -41,7 +41,7 @@ export default function VerifyTokenForm({
   id: string;
 }) {
   const [loading, setLoading] = useState(false);
-  const [showNotification, setShowNotification] = useState(true);
+  const [showNotification, setShowNotification] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { createUser } from "@/actions/users";
 import { UserRole } from "@prisma/client";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 
 export default function RegisterForm({role="USER"}:{role?:UserRole}) {
@@ -18,6 +19,7 @@ export default function RegisterForm({role="USER"}:{role?:UserRole}) {
     reset,
     formState:{errors},
   } = useForm<RegisterInputProps>();
+  const router = useRouter();
   async function onSubmit (data: RegisterInputProps) {
     // console.log(data);
     setIsLoading(true);
@@ -29,7 +31,8 @@ export default function RegisterForm({role="USER"}:{role?:UserRole}) {
         console.log("User Created Successfully")
         reset();
         setIsLoading(false);
-        toast.success("User Created Successfully")
+        toast.success("User Created Successfully");
+        router.push(`/verify-account/${user.data?.id}`)
         console.log(user.data);
         
       } else{
