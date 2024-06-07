@@ -63,7 +63,7 @@ const FaqsCard = (props: FaqsCardProps) => {
     );
 };
 
-export default function () {
+export default function FAQ () {
     const faqsList: Faq[] = [
         {
             q: "How do I sign up fir the ClinicEase App?",
