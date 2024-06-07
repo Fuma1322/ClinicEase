@@ -23,13 +23,13 @@ export default function Hero() {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-5/12">
               <div className="hero-content">
-                <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-gray-400 sm:text-[42px] lg:text-[40px] xl:text-5xl">
+                <h1 className="mb-5 text-4xl font-extrabold !leading-[1.208] text-gray-400 sm:text-[42px] lg:text-[40px] xl:text-5xl ">
                   Join ClinicEase to lessen the long queues at your clinic! 
                 </h1>
                 <p className="mb-8 max-w-[480px] text-base text-body-color ">
                   With TailGrids, business and students thrive together
                 </p>
-                <div className="grid gap-4 md:grid-cols-2 sm:grid-cols-1 ">
+                <div className="grid gap-4 md:grid-cols-2 sm:grid-cols-1">
                       {cards.map((card, i) => (
                           <div key={i} className="bg-gray-900 p-4 rounded-lg shadow-2xl">
                               <h3 className="text-2xl font-semibold text-gray-200">{card.title}</h3>

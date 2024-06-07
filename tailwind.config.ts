@@ -7,6 +7,7 @@ const svgToDataUri = require("mini-svg-data-uri");
  
 const colors = require("tailwindcss/colors");
 
+
 const config = {
   darkMode: ["class"],
   content: [
@@ -85,6 +86,7 @@ const config = {
     },
   },
   plugins: [
+    addVariablesForColors,
     require("tailwindcss-animate"),
     require('@tailwindcss/forms'),
     function ({ matchUtilities, theme }: any) {
