@@ -1,5 +1,6 @@
 import { type } from 'os';
 import React from 'react'
+import { Label } from '../ui/label';
 
 type TextInputsProps = {
     label: string;
@@ -9,11 +10,19 @@ type TextInputsProps = {
     type?: string;
 };
 export default function TextInputs({label, register, name, errors, type="text"}:TextInputsProps) {
+  <div className="grid gap-2">
+            
+              
+              <Input
+                id="email"
+                type="email"
+                placeholder="m@example.com"
+                required
+              />
+              </div>
   return (
-    <div>
-              <label htmlFor={`${name}`} className="block text-sm font-medium leading-6 text-gray-200">
-                {label}
-              </label>
+    <div className="grid gap-2">
+              <Label htmlFor={`${name}`}> {label}</Label>
               <div className="mt-2">
                 <input
                 {...register(`${name}`, {required:true})}
