@@ -7,14 +7,13 @@ import { useRouter } from "next/navigation"
 import { docsConfig } from "@/config/docs"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { StethoscopeIcon } from "lucide-react"
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false)
-
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
@@ -60,10 +59,10 @@ export function MobileNav() {
           className="flex items-center"
           onOpenChange={setOpen}
         >
-          <img src="/logo.png" className="mr-2 h-6 w-6" />
-          <span className="font-bold">{siteConfig.name}</span>
+          <StethoscopeIcon className="mr-2 h-4 w-4 text-red-600" />
+          <span className="font-bold text-sky-400">{siteConfig.name}</span>
         </MobileLink>
-        <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
+        <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6 font-extrabold">
           <div className="flex flex-col space-y-3">
             {docsConfig.mainNav?.map(
               (item) =>
