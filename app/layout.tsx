@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Outfit } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from "@/components/ui/theme-provider"
+import Providers from '@/components/Providers'
 
-const inter = Inter({ subsets: ['latin'] })
+const outfit = Outfit({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'ClinicEase',
@@ -16,9 +17,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-      <ThemeProvider
+    <html lang="en">
+      <body className={outfit.className}>
+        <Providers>
+          <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
@@ -26,6 +28,7 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
+        </Providers>
       </body>
     </html>
   )

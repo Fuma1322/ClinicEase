@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react'
 import Sidebar from "@/components/Dashboard/Sidebar"
 import NavBar from "@/components/Dashboard/NavBar"
-import { Button } from '@/components/ui/button'
 
 export default function Layout({children}:{children:ReactNode}) {
   return (

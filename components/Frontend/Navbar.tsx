@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 const navigation = [
   { name: 'About', href: 'dashboard' },
@@ -38,12 +39,12 @@ export default function Navbar() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-              href="/dashboard"
-              className="rounded-md bg-sky-300 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          <Link
+              href="/login"
+              className=" -mx-3 block rounded-lg bg-sky-300 px-3.5 py-2.5 text-base font-semibold text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
            >
             Log In
-          </a>
+          </Link>
           </div>
         </nav>
         <Dialog className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -74,12 +75,12 @@ export default function Navbar() {
                       ))}
                     </div>
                     <div className="py-6">
-                      <a
-                        href="/dashboard"
+                      <Link
+                        href="/login"
                         className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-400 hover:bg-gray-600"
                       >
                         Log in
-                      </a>
+                      </Link>
                     </div>
                     <div>
                       <img className='items-center justify-center flex' src="/logo.png" alt="logo" />
