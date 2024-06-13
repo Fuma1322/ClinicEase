@@ -102,7 +102,7 @@ export default function LoginForm() {
                 </div>
               </div>
               <div>
-                <SubmitButton title="Sign Up" isLoading={isLoading} loadingTitle={"Please Wait..."} />
+                <SubmitButton title="Sign In" isLoading={isLoading} loadingTitle={"Please Wait..."} />
               </div>
             </form>
             <p className="mt-10 text-center text-sm text-gray-500">
