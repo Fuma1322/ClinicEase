@@ -16,7 +16,6 @@ import {
   import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
   import Link from "next/link"
   import {
-    CircleUser,
     Hospital,
     LucideHome,
     Menu,
@@ -26,10 +25,19 @@ import {
     UserPlus2Icon,
     Users,
   } from "lucide-react"
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import { Session, User } from 'next-auth'
+import { signOut } from 'next-auth/react'
 
-export default function NavBar() {
+export default function NavBar({session}:{session:Session}) {
+  const user =session.user;
+  const router = useRouter();
+  async function handleLogout() {
+    await signOut()
+    router.push("/");
+  }
   const pathName = usePathname()
   const sideBarLinks =[
     {
@@ -114,18 +122,21 @@ export default function NavBar() {
     </div>
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" size="icon" className="rounded-full">
-          <CircleUser className="h-5 w-5" />
-          <span className="sr-only">Toggle user menu</span>
-        </Button>
+      <Avatar className='cursor-pointer'>
+        {user.image ? (
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+        ):(
+          <AvatarFallback>CE</AvatarFallback>
+        )}   
+        </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel className='text-center'>{user.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Settings</DropdownMenuItem>
         <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem onClick={()=>handleLogout()}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   </header>

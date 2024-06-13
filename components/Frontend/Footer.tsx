@@ -10,7 +10,7 @@ export default function Footer() {
             label: "Company",
             items: [
                 {
-                    href: 'javascript:void()',
+                    href: '/join/clinics',
                     name: 'Partners'
                 },
                 {
@@ -22,7 +22,7 @@ export default function Footer() {
                     name: 'Team'
                 },
                 {
-                    href: '/join/clinics',
+                    href: 'javascript:void()',
                     name: 'Careers'
                 },
             ],
