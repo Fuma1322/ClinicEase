@@ -72,7 +72,7 @@ export default function FAQ () {
                     You can sign up by visiting our website and clicking on the{" "}
                     <CustomButton 
                     title="Register"
-                    href="/register?role='CLINIC'"
+                    href="/register?role=CLINIC"
                     className="bg-sky-300 hover:bg-indigo-600"/>{" "}
                     Follow the instructions to create your account.
                 </div>
