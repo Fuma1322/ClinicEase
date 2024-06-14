@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { HiInformationCircle } from "react-icons/hi";
 import { Alert } from "flowbite-react";
+import { StethoscopeIcon } from "lucide-react";
 
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -52,10 +53,8 @@ export default function LoginForm() {
     return ( 
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img
+            <StethoscopeIcon
               className="mx-auto h-16 w-auto"
-              src="/logo.png"
-              alt="Your Company"
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-400">
               Sign in to your account
