@@ -26,12 +26,21 @@ import {
     UserPlus2Icon,
     Users,
   } from "lucide-react"
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import ModeToggle from '../ModeToggle'
 import path from 'path'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import { Session } from 'next-auth'
+import { signOut } from 'next-auth/react'
 
-export default async function NavBar() {
+export default function NavBar({session}:{session:Session}) {
+  const user = session.user;
+  const router = useRouter();
+  async function handleLogout() {
+    await signOut()
+    router.push("/login");
+  }
   const pathName = usePathname()
   const sideBarLinks =[
     {
@@ -118,19 +127,31 @@ export default async function NavBar() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full">
-          <CircleUser className="h-5 w-5" />
+          {/* <CircleUser className="h-5 w-5" /> */}
+          <Avatar className="cursor-pointer">
+            {user.image?(<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />): (
+              <AvatarFallback>CN</AvatarFallback>
+            )}
+            
+            
+          </Avatar>
           <span className="sr-only">Toggle user menu</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel className="text-center">{user.name}</DropdownMenuLabel>
+        <DropdownMenuLabel className="text-center font-light text-sm text-slate-500">{user.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Settings</DropdownMenuItem>
         <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem onClick={()=> handleLogout()}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   </header>
   )
 }
+function userRouter() {
+  throw new Error('Function not implemented.')
+}
+

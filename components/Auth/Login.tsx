@@ -13,12 +13,12 @@ import { HiInformationCircle } from "react-icons/hi";
 import { Button } from "../ui/button";
 import Image from "next/image";
 
-export default function Login() {
+export default function LoginFormWithBg() {
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
   const [showNotification, setShowNotification] = useState(false);
   const { register, handleSubmit, reset, formState: { errors } } = useForm<LoginInputProps>();
-
+ 
   async function onSubmit(data: LoginInputProps) {
     try {
       setIsLoading(true);
@@ -45,13 +45,9 @@ export default function Login() {
       console.error("Network Error:", error);
       toast.error("It seems something is wrong with your Network");
     }
-  }
-    function handleSubmit(onSubmit: any): import("react").FormEventHandler<HTMLFormElement> | undefined {
-        throw new Error("Function not implemented.")
-    }
-
+}
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+    <div className="w-full lg:grid h-screen lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
@@ -67,36 +63,33 @@ export default function Login() {
               your credentials
             </Alert>
           )}
-            <div className="grid gap-2">
-            
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-                <Link
-                  href="/forgot-password"
-                  className="ml-auto inline-block text-sm underline"
-                >
-                  Forgot your password?
-                </Link>
-              </div>
-              <Input id="password" type="password" required />
-            </div>
-            <SubmitButton title={""} isLoading={false} LoadingTitle={"Logging you in please wait"}/>
+           <TextInputs label="Email Address"
+            register={register} 
+            name="email"
+            type="email"
+            errors={errors}
+            placeholder="Eg seli@gmail.com" />
+
+            <TextInputs label="Password"
+            register={register} 
+            page="login"
+            name="password"
+            type="password"
+            errors={errors}
+            placeholder="**********" />
+
+            <SubmitButton 
+            title="Login" 
+            isLoading={isLoading} 
+            LoadingTitle="Logging you in please wait...."
+            />
             <Button variant="outline" className="w-full">
               Login with Google
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Link href="#" className="underline">
+            <Link href="/register" className="underline">
               Sign up
             </Link>
           </div>
@@ -104,10 +97,10 @@ export default function Login() {
       </div>
       <div className="hidden bg-muted lg:block">
         <Image
-          src="/placeholder.svg"
+          src="/nurse.jpg"
           alt="Image"
-          width="1920"
-          height="1080"
+          width="1000"
+          height="907"
           className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
         />
       </div>

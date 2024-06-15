@@ -66,10 +66,15 @@ export default function LoginForm() {
               your credentials
             </Alert>
           )}
-          <TextInputs label="Email Address" register={register} name="email" errors={errors} />
+          <TextInputs 
+          label="Email Address" 
+          register={register} 
+          name="email" errors={errors} 
+          placeholder={""} 
+          />
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-200">
+              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                 Password
               </label>
             </div>
