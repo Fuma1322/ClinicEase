@@ -4,9 +4,10 @@ export default function Pricing() {
 
     const plans = [
         {
-            name: "Basic plan",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            price: 12,
+            name: "Free forever",
+            desc: "Ideal for clinics that are starting out",
+            price: 0,
+            fee: 5,
             isMostPop: false,
             features: [
                 "Curabitur faucibus",
@@ -23,6 +24,7 @@ export default function Pricing() {
             name: "Startup",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             price: 35,
+            fee: 2,
             isMostPop: true,
             features: [
                 "Curabitur faucibus",
@@ -38,6 +40,7 @@ export default function Pricing() {
             name: "Enterprise",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             price: 60,
+            fee: 0,
             isMostPop: false,
             features: [
                 "Curabitur faucibus",
