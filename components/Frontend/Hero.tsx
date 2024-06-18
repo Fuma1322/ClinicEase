@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const words = ["Clinic"];
+  const words = ["Clinic:"];
   const word = ["Your", "Hands"];
 
   return (
@@ -32,7 +32,7 @@ export default function Hero() {
             <div className="text-6xl mx-auto font-bold tracking-tight text-black dark:text-gray-300 sm:text-6xl">
                 From Screen To
                 <FlipWords words={words} /> <br />
-                Your Health Is In
+                Your Health In
                 <FlipWordsCopy words={word} /> <br />
             </div>
             </div>
@@ -43,7 +43,7 @@ export default function Hero() {
               fugiat veniam occaecat fugiat aliqua.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Link href="/login">
+              <Link href="/register">
             <Button
               borderRadius="1.55rem"
               className=" dark:bg-slate-600 text-black dark:text-white border-neutral-600 dark:border-slate-800"

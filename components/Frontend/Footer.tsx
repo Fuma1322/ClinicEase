@@ -11,19 +11,11 @@ export default function Footer() {
             items: [
                 {
                     href: '/join/clinics',
-                    name: 'Partners'
+                    name: 'Clinics'
                 },
                 {
                     href: 'javascript:void()',
                     name: 'Blog'
-                },
-                {
-                    href: 'javascript:void()',
-                    name: 'Team'
-                },
-                {
-                    href: 'javascript:void()',
-                    name: 'Careers'
                 },
             ],
         },
@@ -38,27 +30,11 @@ export default function Footer() {
                     href: 'javascript:void()',
                     name: 'Support'
                 },
-                {
-                    href: 'javascript:void()',
-                    name: 'Docs'
-                },
-                {
-                    href: 'javascript:void()',
-                    name: 'Pricing'
-                },
             ],
         },
         {
             label: "About",
             items: [
-                {
-                    href: 'javascript:void()',
-                    name: 'Terms'
-                },
-                {
-                    href: 'javascript:void()',
-                    name: 'License'
-                },
                 {
                     href: 'javascript:void()',
                     name: 'Privacy'
@@ -103,7 +79,7 @@ export default function Footer() {
                     <div className="max-w-xs">
                         <h2 className='font-bold sm:text-3xl text-sky-400'>ClinicEase</h2>
                         <p className="leading-relaxed mt-2 text-[13px]">
-                            From Screen To Clinic, Your Health Is In Your Hands
+                            From Screen To Clinic: Your Health In Your Hands
                         </p>
                     </div>
                 </div>

@@ -14,3 +14,12 @@ export type LoginInputProps = {
     email: string;
     password: string;
 }
+
+export type BasicInfoProps = {
+    clinicName: string;
+    email: string;
+    phone: string;
+    address: string;
+    profilePicture?: string;
+    page: string;
+}

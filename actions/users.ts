@@ -2,7 +2,6 @@
 
 import { prismaClient } from "@/lib/db";
 import { RegisterInputProps } from "@/types/types";
-import { UserRole } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { Resend } from "resend";
 import EmailTemplate from "@/components/Emails/emailstemplate";
