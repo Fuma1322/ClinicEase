@@ -1,14 +1,13 @@
-import type { Config } from "tailwindcss"
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
+import type { Config } from "tailwindcss";
+import { withUt } from "uploadthing/tw";
 
 const svgToDataUri = require("mini-svg-data-uri");
- 
 const colors = require("tailwindcss/colors");
+const {
+  default: flattenColorPalette,
+  } = require("tailwindcss/lib/util/flattenColorPalette");
 
-
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -18,7 +17,8 @@ const config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-	],
+    "./src/**/*.{ts,tsx,mdx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -112,17 +112,17 @@ const config = {
       );
     },
   ],
-} satisfies Config
+};
 
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
   );
- 
+
   addBase({
     ":root": newVars,
   });
 }
-export default config
 
+export default withUt(config);

@@ -6,7 +6,7 @@ export default function Hero() {
     {
       title: "Enroll Your Clinic",
       description: "Start a new application to join our network of healthcare providers",
-      link: "/",
+      link: "/registry/666c3921b93cbecfd85baaa8?page",
       linkTitle: "Start New Application"
     },
     {
@@ -23,11 +23,11 @@ export default function Hero() {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-5/12">
               <div className="hero-content">
-                <h1 className="mb-5 text-4xl font-extrabold !leading-[1.208] text-gray-400 sm:text-[42px] lg:text-[40px] xl:text-5xl ">
+                <h1 className="mb-5 text-4xl font-extrabold !leading-[1.208] text-gray-300 sm:text-[42px] lg:text-[40px] xl:text-5xl ">
                   Join ClinicEase to lessen the long queues at your clinic! 
                 </h1>
                 <p className="mb-8 max-w-[480px] text-base text-body-color ">
-                  With TailGrids, business and students thrive together
+                  With ClinicEase, business and students thrive together
                 </p>
                 <div className="grid gap-4 md:grid-cols-2 sm:grid-cols-1">
                       {cards.map((card, i) => (
@@ -42,7 +42,7 @@ export default function Hero() {
                           </div>
                         ))}
                   </div>
-                <div className="clients pt-16">
+                {/* <div className="clients pt-16">
                   <h6 className="mb-6 flex items-center text-xs font-bold text-body-color ">
                     Some Of Our Clients
                     <span className="ml-3 inline-block h-px w-8 bg-body-color"></span>
@@ -63,7 +63,7 @@ export default function Hero() {
                       imgSrc="https://cdn.tailgrids.com/2.0/image/assets/images/brands/uideck.svg"
                     />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="hidden px-4 lg:block lg:w-1/12"></div>
@@ -71,9 +71,11 @@ export default function Hero() {
               <div className="lg:ml-auto lg:text-right">
                 <div className="relative z-10 inline-block pt-11 lg:pt-0">
                   <img
-                    src="https://cdn.tailgrids.com/1.0/assets/images/hero/hero-image-01.png"
+                    src="/hero3.jpeg"
                     alt="hero"
-                    className="max-w-full lg:ml-auto"
+                    width="600"
+                    height="600"
+                    className="max-w-full lg:ml-auto rounded-lg" 
                   />
                 </div>
               </div>

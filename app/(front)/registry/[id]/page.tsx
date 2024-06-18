@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function page({params:{id}}:{params:{id:string}}) {
   return (
-    <div>
+    <div className='max-w-5xl mx-auto py-8 min-h-screen'>
         <RegistrySteps id={id} />
     </div>
   )

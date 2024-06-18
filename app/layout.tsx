@@ -4,8 +4,17 @@ import './globals.css'
 import { ThemeProvider } from "@/components/ui/theme-provider"
 import Providers from '@/components/ui/Providers'
 import { siteConfig } from '@/config/site'
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from './api/uploadthing/core'
+import { Inter as FontSans } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -66,6 +75,9 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <head />
         <body>
+        <NextSSRPlugin
+          routerConfig={extractRouterConfig(ourFileRouter)}
+        />
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

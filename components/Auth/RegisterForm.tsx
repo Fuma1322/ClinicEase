@@ -6,7 +6,6 @@ import TextInput from "../FormInputs/TextInput";
 import SubmitButton from "../FormInputs/SubmitButton";
 import { useState } from "react";
 import { createUser } from "@/actions/users";
-import { UserRole } from "@prisma/client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { StethoscopeIcon } from "lucide-react";
@@ -52,7 +51,7 @@ export default function RegisterForm({
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <StethoscopeIcon
-              className="mx-auto h-16 w-auto"
+              className="mx-auto h-16 w-auto text-red-600"
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-400">
               Create New Account

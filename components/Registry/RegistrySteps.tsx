@@ -4,30 +4,30 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation'
 import React from 'react'
-import AboutForm from './AboutForm';
-import ContactForm from './ContactForm';
-import AvailabilityForm from './AvailabilityForm';
 import AdditionalInfo from './AdditionalInfo';
+import BasicInfo from './BasicInfoForm';
+import ClinicDetails from './ClinicDetailsForm';
+import ClinicPolicy from './ClinicFormForm';
 
 export default function RegistrySteps({id}:{id:string}) {
     const params = useSearchParams();
-    const page = params.get("page") ?? 5;
+    const page = params.get("page")?? "basic";
     console.log(page)
     const deeds = [
         {
-            name: "About",
-            page: "about",
-            components: <AboutForm/>,
+            name: "Basic Information",
+            page: "basic",
+            components: <BasicInfo title="Basic Info" description="Please Fill In The Clinic Basic Info" page={page}/>,
         },
         {
-            name: "Contact Information",
-            page: "contact",
-            components: <ContactForm/>,
+            name: "Clinic Details",
+            page: "details",
+            components: <ClinicDetails page={page} title="Clinic Details" description="Please Fill In The Clinic Details Info"/>
         },
         {
-            name: "Availability",
-            page: "availability",
-            components: <AvailabilityForm/>,
+            name: "Clinic Policies",
+            page: "policies",
+            components: <ClinicPolicy/>,
         },
         {
             name: "Additional Information",

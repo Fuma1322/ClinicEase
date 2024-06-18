@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import React from 'react'
 
 type TextInputProps = {
@@ -6,10 +7,19 @@ type TextInputProps = {
     name: string;
     errors:any;
     type?: string;
+    className?: string;
 }
 
-export default function TextInput({label,register,name,errors,type="text"}:TextInputProps) {
-  return <div>
+export default function TextInput({
+  label,
+  register,
+  name,
+  errors,
+  type="text",
+  className="col-span-full"
+}:TextInputProps) {
+  return ( 
+  <div className={cn("grid gap-2", className)}>
   <label htmlFor={`${name}`} className="block text-sm font-medium leading-6 text-gray-400">
     {label}
   </label>
@@ -25,4 +35,5 @@ export default function TextInput({label,register,name,errors,type="text"}:TextI
     {errors[`${name}`] && <span className="text-red-500 text-sm">{label} Is Required</span>}
   </div>
 </div>
+  )
 }
