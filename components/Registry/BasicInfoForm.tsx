@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import ImageInput from "../FormInputs/ImageInput";
 import generateTrackingNumber from "@/lib/generatetracking";
 import { createClinicProfile } from "@/actions/registry";
+import OnBoardingContext, { useOnboardingContext } from "@/context/context";
 
 export type StepFormprops = {
   page: string;
@@ -24,6 +25,8 @@ export default function BasicInfo({
   userId,
   nextPage,
 }: StepFormprops) {
+  const {trackingNumber,setTrackingNumber,clinicProfileId, setClinicProfileId} = useOnboardingContext();
+  console.log(trackingNumber,clinicProfileId);
   const [profileImage,setprofileImage] = useState("")
   const [isLoading, setIsLoading] = useState(false)
    const {
@@ -41,10 +44,14 @@ export default function BasicInfo({
     console.log(data);
 
     try {
-      const newProfile = await createClinicProfile(data);
+      const res = await createClinicProfile(data);
       setIsLoading(false)
-      router.push(`/registry/${userId}?page=${nextPage}&&tracking=${data.trackingNumber}`);
-      console.log(newProfile)
+      if (res.status===201){
+        setTrackingNumber(res.data?.trackingNumber??"");
+        setClinicProfileId(res.data?.id??"");
+      router.push(`/registry/${userId}?page=${nextPage}`);
+      console.log(res.data)
+      }
     } catch (error) {
       setIsLoading(false);
       console.log(error)

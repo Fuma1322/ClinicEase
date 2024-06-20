@@ -6,11 +6,14 @@ import { useSearchParams } from 'next/navigation'
 import React from 'react'
 import BasicInfo from './BasicInfoForm';
 import ClinicDetails from './ClinicDetailsForm';
+import { useOnboardingContext } from '@/context/context';
 
 
 export default function RegistrySteps({ id }:{ id: string }) {
+
     const params = useSearchParams();
     const page = params.get("page")?? "basic";
+    const {trackingNumber,clinicProfileId} = useOnboardingContext();
     console.log(page)
     const deeds = [
         {
@@ -44,6 +47,8 @@ export default function RegistrySteps({ id }:{ id: string }) {
             }
         </div>
         <div className='col-span-full sm:col-span-9 bg-neutral-950 p-4'>
+            <p>Profile ID:</p>
+            <p>Tracking ID:</p>
             {
                 currentDeed?.components
             }

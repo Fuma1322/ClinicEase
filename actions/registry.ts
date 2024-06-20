@@ -30,13 +30,18 @@ export async function createClinicProfile (formdata: any) {
       },
     });
     console.log(newProfile);
-    return newProfile
-        // return data;
+    return {
+      data:newProfile,
+      status: 201,
+      error: null
+    };
     } catch (error) {
         console.log(error)
         return {
-            error: "Something went wrong"
-        }
+        data:null,
+        status: 500,
+        error: "Something went wrong"
+        };
     }
     
 }

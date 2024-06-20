@@ -13,6 +13,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Plus } from "lucide-react";
+import { useOnboardingContext } from "@/context/context";
 
 export default function ClinicDetils({page, title, description}:{page:string, title:string, description:string}) {
   const [isLoading, setIsLoading] = useState(false)
@@ -22,6 +23,7 @@ export default function ClinicDetils({page, title, description}:{page:string, ti
     reset,
     formState:{errors},
   } = useForm<ClinicDetailsProps>();
+  const {trackingNumber,clinicProfileId} = useOnboardingContext();
   const router = useRouter();
   async function onSubmit (data: ClinicDetailsProps) {
     data.page = page;
@@ -31,6 +33,7 @@ export default function ClinicDetils({page, title, description}:{page:string, ti
     return (
       <div className="w-full">
       <div className="text-center border-gray pb-4">
+        <p className="text-red-600">Tracking Number: {trackingNumber}</p>
         <h2 className="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-gray-400">
           {title}
         </h2>
