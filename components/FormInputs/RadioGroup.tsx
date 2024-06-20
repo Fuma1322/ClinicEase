@@ -32,12 +32,12 @@ export default function RadioGroupDemo({
         <h3 className="mb-4 dark:text-gray-400">When Are You Available For This Meeting?</h3>
         <ul className="items-center w-full text-sm font-medium bg-white border border-gray-200 rounded-lg sm:flex">
             {
-                radioOptions.map((item, idx) => (
+                radioOptions.map((item,i) => (
                     <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                     <div className="flex items-center ps-3">
                         <input
                         {...register(`${name}`,{required:true})}
-                        key={idx}
+                        key={i}
                         id={item.value} 
                         type="radio" 
                         value={item.value} 
