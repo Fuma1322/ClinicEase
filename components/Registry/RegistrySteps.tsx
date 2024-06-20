@@ -4,37 +4,27 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation'
 import React from 'react'
-import AdditionalInfo from './AdditionalInfo';
 import BasicInfo from './BasicInfoForm';
 import ClinicDetails from './ClinicDetailsForm';
-import ClinicPolicy from './ClinicFormForm';
 
-export default function RegistrySteps({id}:{id:string}) {
+
+export default function RegistrySteps({ id }:{ id: string }) {
     const params = useSearchParams();
     const page = params.get("page")?? "basic";
     console.log(page)
     const deeds = [
         {
-            name: "Basic Information",
+            userId: { id },
+            title: "Basic Information",
             page: "basic",
-            components: <BasicInfo title="Basic Info" description="Please Fill In The Clinic Basic Info" page={page}/>,
+            components: <BasicInfo title="Basic Info" description="Please Fill In The Clinic Basic Info" page={page} nextPage="details" userId={id}/>,
         },
         {
-            name: "Clinic Details",
+            title: "Clinic Details",
             page: "details",
-            components: <ClinicDetails page={page} title="Clinic Details" description="Please Fill In The Clinic Details Info"/>
+            components: <ClinicDetails page={page} title="Clinic Details" description="Please Fill In The Clinic Details"/>
         },
-        {
-            name: "Clinic Policies",
-            page: "policies",
-            components: <ClinicPolicy/>,
-        },
-        {
-            name: "Additional Information",
-            page: "additional",
-            components: <AdditionalInfo/>,
-        },
-    ];
+    ] 
     const currentDeed = deeds.find((step) =>step.page === page)
     console.log(currentDeed)
   return (
@@ -47,7 +37,7 @@ export default function RegistrySteps({id}:{id:string}) {
                         <Link key={i}
                         href={`/registry/${id}?page=${step.page}`} 
                         className={cn("block shadow-inner py-4 px-4 bg-black text-sky-400 font-extrabold text-sm uppercase", step.page===page?"bg-black-100 text-gray-400":"")}>
-                            {step.name}
+                            {step.title}
                         </Link>            
                     )
                 })

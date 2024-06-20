@@ -1,43 +1,58 @@
-import React from 'react'
+"use client"
+import { cn } from "@/lib/utils";
+import React from "react"
 
-export default function RadioGroup() {
-    const radios = [
-        {
-            name: "Hobby plan",
-            description: "For personal or non-commercial projects.",
-        },
-        {
-            name: "Pro plan",
-            description: "For team collaboration with advanced features.",
-        },
-    ]
-  return (
-    <div className="max-w-md mx-auto px-4">
-    <h2 className="text-gray-800 font-medium">Find a plan to power your projects</h2>
-    <ul className="mt-6 space-y-3">
-        {
-            radios.map((item, idx) => (
-                <li key={idx}>
-                    <label htmlFor={item.name} className="block relative">
-                        <input id={item.name} type="radio" defaultChecked={idx == 1 ? true : false} name="payment" />
-                        <div className="w-full p-5 cursor-pointer rounded-lg border bg-white shadow-sm ring-indigo-600 peer-checked:ring-2 duration-200">
-                            <div className="pl-7">
-                                <h3 className="leading-none text-gray-800 font-medium">
-                                    {item.name}
-                                </h3>
-                                <p className="mt-1 text-sm text-gray-600">
-                                    {item.description}
-                                </p>
-                            </div>
-                        </div>
-                        <span className="block absolute top-5 left-5 border peer-checked:border-[5px] peer-checked:border-indigo-600 w-4 h-4 rounded-full">
-                        </span>
-                    </label>
-                </li>
-            ))
-        }
-    </ul>
-</div>
-)
+type RadioInputProps = {
+    name: string;
+    className?: string;
+    register: any;
+    title: string;
+    errors: any;
 }
 
+export default function RadioGroupDemo({ 
+   className = "col-span-full",
+   name,
+   register,
+   title,
+   errors,   
+}: RadioInputProps) {
+    const radioOptions = [
+        {
+            label: "Weekly (You're available one or more times during the week, every week)",
+            value: "weekly",
+          },
+          {
+            label: "Specific Dates (You're only available on specific dates)",
+            value: "specific",
+          },
+]
+  return (
+   <div className={cn("grid gap-2",className)}>
+        <h3 className="mb-4 dark:text-gray-400">When Are You Available For This Meeting?</h3>
+        <ul className="items-center w-full text-sm font-medium bg-white border border-gray-200 rounded-lg sm:flex">
+            {
+                radioOptions.map((item, i) => (
+                    <li key={i} className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                        <div className="flex items-center ps-3">
+                            <input
+                            {...register(`${name}`,{required:true})}
+                            id={item.value} 
+                            type="radio" 
+                            value={item.value} 
+                            name={`${name}`} 
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"/>
+                            <label 
+                            htmlFor={item.value} 
+                            className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-900">
+                                {item.label} {" "}
+                            </label>
+                        </div>
+                    </li>
+                ))
+            }
+            {errors[`${name}`] && <span className="text-red-500 text-sm">{title} Is Required</span>}
+        </ul>
+   </div> 
+  )
+}

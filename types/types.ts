@@ -22,4 +22,13 @@ export type BasicInfoProps = {
     address: string;
     profilePicture?: string;
     page: string;
+    userId?: string | undefined;
+    trackingNumber: string;
+}
+
+export type ClinicDetailsProps = { 
+    page: string;
+    duration: string;
+    availability: string;
+
 }
