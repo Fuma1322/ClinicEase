@@ -6,12 +6,25 @@ import TextInput from "../FormInputs/TextInput";
 import SubmitButton from "../FormInputs/SubmitButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { TextArea } from "../FormInputs/TextArea";
 import ImageInput from "../FormInputs/ImageInput";
+import generateTrackingNumber from "@/lib/generatetracking";
+import { createClinicProfile } from "@/actions/registry";
 
-
-export default function BasicInfo({page, title, description}:{page:string, title:string, description:string}) {
-  const [profileImage,setprofileImage] = useState("https://utfs.io/f/acf62ede-cc6c-4797-b0ee-3fae55d8d844-3vabb.png")
+export type StepFormprops = {
+  page: string;
+  title: string;
+  description: string;
+  userId?: string;
+  nextPage?: string;
+};
+export default function BasicInfo({
+  page, 
+  title, 
+  description, 
+  userId,
+  nextPage,
+}: StepFormprops) {
+  const [profileImage,setprofileImage] = useState("")
   const [isLoading, setIsLoading] = useState(false)
    const {
     register,
@@ -21,9 +34,21 @@ export default function BasicInfo({page, title, description}:{page:string, title
   } = useForm<BasicInfoProps>();
   const router = useRouter();
   async function onSubmit (data: BasicInfoProps) {
+    setIsLoading(true);
+    data.userId = userId,
+    data.trackingNumber = generateTrackingNumber()
     data.page = page;
     console.log(data);
-    setIsLoading(true);
+
+    try {
+      const newProfile = await createClinicProfile(data);
+      setIsLoading(false)
+      router.push(`/registry/${userId}?page=${nextPage}&&tracking=${data.trackingNumber}`);
+      console.log(newProfile)
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error)
+    }
   }
     return (
         <div className=" min-h-full flex-1 flex-col justify-center px-6 lg:px-8">
@@ -53,7 +78,7 @@ export default function BasicInfo({page, title, description}:{page:string, title
               <TextInput 
               label="Phone Number" 
               register={register} 
-              name="phone number"
+              name="phone"
               type="tel"
               errors={errors} 
               />
