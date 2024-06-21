@@ -65,7 +65,7 @@ model ClinicProfile {
   page          String 
   address       String 
   clinicName    String
-  trackingNumber String 
+  trackingNumber String @unique 
   profilePicture String? 
   userId         String   @db.ObjectId @unique
   user           User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade) 

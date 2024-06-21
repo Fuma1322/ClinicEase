@@ -10,6 +10,7 @@ import ImageInput from "../FormInputs/ImageInput";
 import generateTrackingNumber from "@/lib/generatetracking";
 import { createClinicProfile } from "@/actions/registry";
 import OnBoardingContext, { useOnboardingContext } from "@/context/context";
+import toast from "react-hot-toast";
 
 export type StepFormprops = {
   page: string;
@@ -17,6 +18,7 @@ export type StepFormprops = {
   description: string;
   userId?: string;
   nextPage?: string;
+  formId?: String;
 };
 export default function BasicInfo({
   page, 
@@ -24,6 +26,7 @@ export default function BasicInfo({
   description, 
   userId,
   nextPage,
+  formId=""
 }: StepFormprops) {
   const {trackingNumber,setTrackingNumber,clinicProfileId, setClinicProfileId} = useOnboardingContext();
   console.log(trackingNumber,clinicProfileId);
@@ -41,12 +44,15 @@ export default function BasicInfo({
     data.userId = userId,
     data.trackingNumber = generateTrackingNumber()
     data.page = page;
+    data.profilePicture=profileImage
     console.log(data);
 
     try {
       const res = await createClinicProfile(data);
       setIsLoading(false)
       if (res.status===201){
+        setIsLoading(false)
+        toast("Clinic Profile created")
         setTrackingNumber(res.data?.trackingNumber??"");
         setClinicProfileId(res.data?.id??"");
       router.push(`/registry/${userId}?page=${nextPage}`);

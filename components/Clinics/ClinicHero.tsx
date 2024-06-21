@@ -12,7 +12,7 @@ export default function Hero() {
     {
         title: "Resume Application",
         description: "Pick up where you left off and complete enrolling your clinic",
-        link: "/",
+        link: "/registry/resume",
         linkTitle: "Resume Application"
       },  
     ]
