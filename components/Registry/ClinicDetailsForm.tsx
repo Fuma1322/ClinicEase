@@ -14,8 +14,16 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Plus } from "lucide-react";
 import { useOnboardingContext } from "@/context/context";
+import { StepFormprops } from "./BasicInfoForm";
 
-export default function ClinicDetils({page, title, description}:{page:string, title:string, description:string}) {
+
+export default function ClinicDetils({
+  page, 
+  title, 
+  description,
+userId,
+  formId
+}: StepFormprops) {
   const [isLoading, setIsLoading] = useState(false)
    const {
     register,
@@ -33,7 +41,6 @@ export default function ClinicDetils({page, title, description}:{page:string, ti
     return (
       <div className="w-full">
       <div className="text-center border-gray pb-4">
-        <p className="text-red-600">Tracking Number: {trackingNumber}</p>
         <h2 className="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-gray-400">
           {title}
         </h2>

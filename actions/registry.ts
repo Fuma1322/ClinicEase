@@ -43,5 +43,34 @@ export async function createClinicProfile (formdata: any) {
         error: "Something went wrong"
         };
     }
-    
-}
+  }
+
+export async function getApplicationByTrackingNumber(trackingNumber:string) {
+  if(trackingNumber){
+   try {
+
+     const existingProfile = await prismaClient.clinicProfile.findUnique({
+       where:{
+         trackingNumber,
+       },
+     });
+     if(!existingProfile){
+      return {
+        data:null,
+        status: 404,
+        error: "Wrong Tracking Number",
+     };
+     }
+     return {
+        data:existingProfile,
+        status: 200,
+        error: null
+     };
+   } catch (error) {
+     console.log(error);
+     return {
+        data:null,
+        status: 500,
+        error: "Data cannot be fetched"
+    };
+  }

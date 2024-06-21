@@ -20,12 +20,24 @@ export default function RegistrySteps({ id }:{ id: string }) {
             userId: { id },
             title: "Basic Information",
             page: "basic",
-            components: <BasicInfo title="Basic Info" description="Please Fill In The Clinic Basic Info" page={page} nextPage="details" userId={id}/>,
+            components: <BasicInfo 
+            title="Basic Info" 
+            description="Please Fill In The Clinic Basic Info" 
+            page={page} 
+            nextPage="details" 
+            userId={id}
+            formId={clinicProfileId}
+            />
         },
         {
             title: "Clinic Details",
             page: "details",
-            components: <ClinicDetails page={page} title="Clinic Details" description="Please Fill In The Clinic Details"/>
+            components: <ClinicDetails 
+            page={page} 
+            title="Clinic Details" 
+            description="Please Fill In The Clinic Details"
+            formId={clinicProfileId}
+            />
         },
     ] 
     const currentDeed = deeds.find((step) =>step.page === page)
@@ -47,8 +59,7 @@ export default function RegistrySteps({ id }:{ id: string }) {
             }
         </div>
         <div className='col-span-full sm:col-span-9 bg-neutral-950 p-4'>
-            <p>Profile ID:</p>
-            <p>Tracking ID:</p>
+            {trackingNumber&&<p className="border-b border-gray-200 text-teal-600 pb-2">Use this Tracking Number <span className="font-bold">{trackingNumber}</span> to Resume application or Check Status</p>}
             {
                 currentDeed?.components
             }
