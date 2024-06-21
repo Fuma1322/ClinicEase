@@ -9,7 +9,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
-import { updateUserById } from "@/actions/users";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,15 +19,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
+
 import { UserRole } from "@prisma/client";
 import { Input } from "../ui/input";
 import Link from "next/link";
+import { getApplicationByTrackingNumber } from "@/actions/registry";
+import SubmitButton from "../FormInputs/SubmitButton";
  
 const FormSchema = z.object({
   trackingNumber: z.string().min(2, {
@@ -37,20 +33,10 @@ const FormSchema = z.object({
 });
 
  
-export default function TrackingForm({
-  trackingNumber,
-  id,
-  role
-}: {
-  trackingNumber: number | undefined;
-  id: string;
-  role: UserRole | undefined
-}) {
+export default function TrackingForm() {
   const [loading, setLoading] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
-  const [trackingSuccessful, setTrackingSuccessful] = useState(true);
-  const [userId, setUserId] = useState("");
-  const [page, setPage] = useState("");
+  
 
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -63,17 +49,27 @@ export default function TrackingForm({
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setLoading(true);
     try {
-      await updateUserById(id);
-      setLoading(false);
-      // reset();
-      toast.success("Account Verified");
-      if (role === "CLINIC") {
-        router.push(`/registry/${id}`);
+      // make request
+      const res = await getApplicationByTrackingNumber(data.trackingNumber)
+      if (res?.status===404){
+        setShowNotification(true)
+        setLoading(false)
+      }
+      if (res?.status===200){
+        toast.success("Redirecting you")
+        // setUserId(res.data?.userId!)
+        // setPage(res.data?.page!)
+        // setTrackingSuccessful(true)
+        // setShowNotification(true)
+        setLoading(false)
+        router.push(`/registry/${res.data?.userId}?page=${res.data?.page}`)
+        
       } else {
-        router.push("/login");
+        throw new Error("Something went wrong")
       }
       //registry page or onboarding
     } catch (error) {
+      toast.error("Something went wrong, Try Again")
       setLoading(false);
       console.log(error);
     }
@@ -88,13 +84,6 @@ export default function TrackingForm({
             Tracking number and Enter again
           </Alert>
         )}
-        {
-          trackingSuccessful&&(
-           <Button asChild>
-             <Link href={`/registry/${userId}?page=${page}`}>Click here to Resume</Link>
-           </Button>
-          )
-        }
        <FormField
           control={form.control}
           name="trackingNumber"
@@ -105,14 +94,15 @@ export default function TrackingForm({
                 <Input placeholder="eg. NKBNMPTRPP" {...field} />
               </FormControl>
               <FormDescription>
-                Enter Tracking Number
+                {/* Enter Tracking Number */}
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
  
-        <Button type="submit">Submit</Button>
+        <SubmitButton title="Submit to Resume" isLoading={loading}loadingTitle="Fetching please wait..." 
+        />
       </form>
     </Form>
   );
