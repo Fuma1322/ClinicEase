@@ -1,6 +1,5 @@
 import { getUserById } from "@/actions/users";
 import TrackingForm from "@/components/Frontend/TrackingForm";
-import {trackingNumber} from "@/actions/registry"
  
 export default async function VerifyAccount({
   params: { id },
@@ -9,7 +8,7 @@ export default async function VerifyAccount({
 }) {
   //Get a Users
   const user = await getUserById(id);
-  const trackingNumber = user?.trackingNumber;
+  const userToken = user?.token;
   const role = user?.role;
   return (
     <section className="bg-black dark:bg-black">
@@ -19,7 +18,7 @@ export default async function VerifyAccount({
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
               Resume Application
             </h1>
-            <TrackingForm role={role} trackingNumber={trackingNumber} id={id} />
+            <TrackingForm role={role} userToken={userToken} id={id} />
           </div>
         </div>
       </div>
