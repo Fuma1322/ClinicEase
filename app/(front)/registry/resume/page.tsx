@@ -18,7 +18,7 @@ export default async function VerifyAccount({
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
               Resume Application
             </h1>
-            <TrackingForm role={role} userToken={userToken} id={id} />
+            <TrackingForm />
           </div>
         </div>
       </div>
