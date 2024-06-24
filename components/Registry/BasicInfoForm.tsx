@@ -30,14 +30,17 @@ export default function BasicInfo({
 }: StepFormprops) {
   const {trackingNumber,setTrackingNumber,clinicProfileId, setClinicProfileId} = useOnboardingContext();
   console.log(trackingNumber,clinicProfileId);
-  const [profileImage,setprofileImage] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [profileImage,setprofileImage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const {basicData, setBasicData}=useOnboardingContext()
    const {
     register,
     handleSubmit,
     reset,
     formState:{errors},
-  } = useForm<BasicInfoProps>();
+  } = useForm<BasicInfoProps>({
+    defaultValues: basicData
+  });
   const router = useRouter();
   async function onSubmit (data: BasicInfoProps) {
     setIsLoading(true);
@@ -49,12 +52,17 @@ export default function BasicInfo({
 
     try {
       const res = await createClinicProfile(data);
-      setIsLoading(false)
+              //save data to the API --TODO
+      setBasicData(data)
       if (res.status===201){
         setIsLoading(false)
-        toast("Clinic Profile created")
+        toast.success("Clinic Profile created");
+
+        const{data}=res
         setTrackingNumber(res.data?.trackingNumber??"");
         setClinicProfileId(res.data?.id??"");
+
+        //ROUTE TO THE NEXT FORM
       router.push(`/registry/${userId}?page=${nextPage}`);
       console.log(res.data)
       }

@@ -1,45 +1,60 @@
-"use client"
-
-import {ClinicDetailsProps } from "@/types/types";
-import { useForm } from "react-hook-form"
+import { ClinicDetailsProps } from "@/types/types";
+import { useForm } from "react-hook-form";
 import TextInput from "../FormInputs/TextInput";
 import SubmitButton from "../FormInputs/SubmitButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import  RadioGroupDemo  from "../FormInputs/RadioGroup";
+import RadioGroupDemo from "../FormInputs/RadioGroup";
 import { Checkbox } from "../ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Plus } from "lucide-react";
 import { useOnboardingContext } from "@/context/context";
 import { StepFormprops } from "./BasicInfoForm";
+import toast from "react-hot-toast"; // For showing success or error messages
+import { createClinicProfile } from "@/actions/registry";
 
-
-export default function ClinicDetils({
+export default function ClinicDetails({
   page, 
   title, 
   description,
-userId,
+  userId,
   formId
 }: StepFormprops) {
-  const [isLoading, setIsLoading] = useState(false)
-   const {
-    register,
-    handleSubmit,
-    reset,
-    formState:{errors},
-  } = useForm<ClinicDetailsProps>();
-  const {trackingNumber,clinicProfileId} = useOnboardingContext();
+  const [isLoading, setIsLoading] = useState(false);
+  const { clinicData, setClinicData } = useOnboardingContext();
+  const { register, handleSubmit, formState: { errors } } = useForm<ClinicDetailsProps>({
+    defaultValues: clinicData,
+  });
   const router = useRouter();
-  async function onSubmit (data: ClinicDetailsProps) {
+
+  async function onSubmit(data: ClinicDetailsProps) {
     data.page = page;
     console.log(data);
-    // setIsLoading(true);
+
+    try {
+      setIsLoading(true);
+
+      // Save the clinic details
+      const res = await createClinicProfile(data); // Assume this function saves the details
+      setClinicData(data);
+
+      if (res.status === 201) {
+        toast.success("Clinic details saved successfully!");
+        router.push(`/login`); // Route to the login or doctor's listing page
+      } else {
+        toast.error("Failed to save clinic details. Please try again.");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   }
-    return (
-      <div className="w-full">
+
+  return (
+    <div className="w-full">
       <div className="text-center border-gray pb-4">
         <h2 className="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-gray-400">
           {title}
@@ -49,25 +64,24 @@ userId,
         </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="mx-auto py-4 px-4">
-          <div className="grid gap-4 grid-cols-2">
+        <div className="grid gap-4 grid-cols-2">
           <TextInput 
-          label="What Is The Duration For Your Meetings" 
-          register={register} 
-          name="meetingDuration"
-          errors={errors}
-          className="col-span-full"
+            label="What Is The Duration For Your Meetings" 
+            register={register} 
+            name="meetingDuration"
+            errors={errors}
+            className="col-span-full"
           />
           <RadioGroupDemo 
-          name="availability" 
-          register={register} 
-          title="Availability" 
-          errors={errors}
+            name="availability" 
+            register={register} 
+            title="Availability" 
+            errors={errors}
           />
-
           <div className="col-span-full">
             <h2>Define Your Weekly Availability Below:</h2>
             <div className=" border py-6 px-4 border-gray items-center justify-between grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/*Check Box*/}
+              {/* Check Box */}
               <div className="">
                 <div className="flex items-center space-x-2">
                   <Checkbox id="day" />
@@ -80,18 +94,19 @@ userId,
                 </div>
               </div>
               {/* Time */}
-               <div className="grid grid-cols-2 gap-4">
-               <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <Select>
                     <SelectTrigger id="month">
                       <SelectValue placeholder="Month" />
                     </SelectTrigger>
                     <SelectContent>
-                    {Array.from({ length: 12 }, (_, i) => (
+                      {Array.from({ length: 12 }, (_, i) => (
                         <SelectItem 
-                        key={i} 
-                        value={`${(i + 1).toString().padStart(2,"0")}`}>
-                        {(i + 1).toString().padStart(2,"0")}
+                          key={i} 
+                          value={`${(i + 1).toString().padStart(2,"0")}`}
+                        >
+                          {(i + 1).toString().padStart(2,"0")}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -103,8 +118,9 @@ userId,
                     <SelectContent>
                       {Array.from({ length: 59 }, (_, i) => (
                         <SelectItem 
-                        key={i} 
-                        value={`${(i + 1.).toString().padStart(2,"0")}`}>
+                          key={i} 
+                          value={`${(i + 1.).toString().padStart(2,"0")}`}
+                        >
                           {(i + 1).toString().padStart(2,"0")}
                         </SelectItem>
                       ))}
@@ -115,7 +131,7 @@ userId,
                       <SelectValue placeholder="Year" />
                     </SelectTrigger>
                     <SelectContent>
-                    <SelectItem value="3">AM</SelectItem>
+                      <SelectItem value="3">AM</SelectItem>
                       <SelectItem value="4">PM</SelectItem>
                     </SelectContent>
                   </Select>
@@ -126,11 +142,12 @@ userId,
                       <SelectValue placeholder="Month" />
                     </SelectTrigger>
                     <SelectContent>
-                    {Array.from({ length: 12 }, (_, i) => (
+                      {Array.from({ length: 12 }, (_, i) => (
                         <SelectItem 
-                        key={i} 
-                        value={`${(i + 1).toString().padStart(2,"0")}`}>
-                        {(i + 1).toString().padStart(2,"0")}
+                          key={i} 
+                          value={`${(i + 1).toString().padStart(2,"0")}`}
+                        >
+                          {(i + 1).toString().padStart(2,"0")}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -142,8 +159,9 @@ userId,
                     <SelectContent>
                       {Array.from({ length: 59 }, (_, i) => (
                         <SelectItem 
-                        key={i} 
-                        value={`${(i + 1.).toString().padStart(2,"0")}`}>
+                          key={i} 
+                          value={`${(i + 1.).toString().padStart(2,"0")}`}
+                        >
                           {(i + 1).toString().padStart(2,"0")}
                         </SelectItem>
                       ))}
@@ -154,7 +172,7 @@ userId,
                       <SelectValue placeholder="Year" />
                     </SelectTrigger>
                     <SelectContent>
-                    <SelectItem value="3">AM</SelectItem>
+                      <SelectItem value="3">AM</SelectItem>
                       <SelectItem value="4">PM</SelectItem>
                     </SelectContent>
                   </Select>
@@ -163,7 +181,7 @@ userId,
               {/* Add Window */}
               <div className="">
                 <Button variant="ghost">
-                  <Plus className="h4 w-4 flex-shrink-0"/>
+                  <Plus className="h4 w-4 flex-shrink-0" />
                   Add Window
                 </Button>
               </div>
@@ -172,8 +190,8 @@ userId,
           <div className="py-4 flex justify-center items-center">
             <SubmitButton title="Save & Continue" isLoading={isLoading} loadingTitle={"Saving, Please Wait..."} />
           </div>
-          </div>
-        </form>
+        </div>
+      </form>
     </div>
-    )
-  }
+  );
+}

@@ -17,29 +17,30 @@ export default function RegistrySteps({ id }:{ id: string }) {
     console.log(page)
     const deeds = [
         {
-            userId: { id },
             title: "Basic Information",
             page: "basic",
-            components: <BasicInfo 
+            components: (
+            <BasicInfo 
             title="Basic Info" 
             description="Please Fill In The Clinic Basic Info" 
             page={page} 
-            nextPage="details" 
+            nextPage="final" 
             userId={id}
             formId={clinicProfileId}
             />
+            ),
         },
-        {
-            title: "Clinic Details",
-            page: "details",
-            components: <ClinicDetails 
-            page={page} 
-            title="Clinic Details" 
-            description="Please Fill In The Clinic Details"
-            formId={clinicProfileId}
-            />
-        },
-    ] 
+         {
+             title: "Clinic Details",
+             page: "details",
+             components: <ClinicDetails 
+             page={page} 
+             title="Clinic Details" 
+             description="Please Fill In The Clinic Details"
+             formId={clinicProfileId}
+             />
+     },
+    ]; 
     const currentDeed = deeds.find((step) =>step.page === page)
     console.log(currentDeed)
   return (
