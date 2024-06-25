@@ -1,6 +1,5 @@
 import React from 'react';
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import Link from 'next/link';
 import { Briefcase, Dot } from 'lucide-react';
 
@@ -19,7 +18,7 @@ export default function ListPanel() {
                     className='border mb-2 border-gray-100 shadow-sm text-xs bg-slate-900 py-3 px-2 inline-block w-full rounded-md'
                 >
                     <div className="flex justify-between items-center pb-2">
-                        <h2>Tau Ts'ehla</h2>
+                        <h2>Tau Tsehla</h2>
                         <span>4:00pm</span>
                     </div>
                     <div className="flex items-center gap-4">

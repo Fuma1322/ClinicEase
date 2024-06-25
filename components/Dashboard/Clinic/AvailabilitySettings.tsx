@@ -50,7 +50,7 @@ export default function AvailabilitySettings() {
      {
         tabs.map((tab, i)=>{
             return (
-                <Tabs aria-label="Tabs with underline" style="underline">
+                <Tabs key={i} aria-label="Tabs with underline" style="underline">
                 <Tabs.Item active title={tab.title}>
                     {tab.component}
                 </Tabs.Item>
