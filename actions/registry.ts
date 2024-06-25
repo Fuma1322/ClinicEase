@@ -75,3 +75,27 @@ export async function getApplicationByTrackingNumber(trackingNumber: string) {
         }
     }
 }
+export async function getClinicProfileById(id: string | undefined) {
+    if (id){
+        try {
+            const profile = await prismaClient.clinicProfile.findUnique({
+                where: {
+                    id,
+                }
+            });
+        console.log(profile);
+        return {
+            data: profile,
+            status: 200,
+            error: null
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            data: null,
+            status: 500,
+            error: "Profile was not fetched"
+        };
+    }
+}
+}

@@ -2,14 +2,15 @@
 import React from 'react'
 import { Tabs } from "flowbite-react";
 import Monday from './AvailabilityDays/Monday';
+import { ClinicProfile } from '@prisma/client';
 
 
-export default function AvailabilitySettings() {
+export default function AvailabilitySettings({profile,}:{profile:ClinicProfile|undefined|null;}) {
     const tabs = [
         {
            title: "Monday",
            component:
-           <Monday/>
+           <Monday profile={profile}/>
 
         },
         {
