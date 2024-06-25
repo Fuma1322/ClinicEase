@@ -5,6 +5,7 @@ import { BasicInfoProps, RegisterInputProps } from "@/types/types";
 import bcrypt from "bcrypt";
 import { Resend } from "resend";
 import EmailTemplate from "@/components/Emails/emailstemplate";
+import { error } from "console";
 
 export async function createClinicProfile(formdata: any) {
     const resend = new Resend(process.env.RESEND_API_KEY);

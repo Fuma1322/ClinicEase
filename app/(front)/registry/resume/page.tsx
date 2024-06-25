@@ -1,15 +1,17 @@
 import { getUserById } from "@/actions/users";
 import TrackingForm from "@/components/Frontend/TrackingForm";
  
-export default async function VerifyAccount({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
+export default async function VerifyAccount(
+  //{
+  //params: { id },
+//}: {
+ // params: { id: string };
+//}
+) {
   //Get a Users
-  const user = await getUserById(id);
-  const userToken = user?.token;
-  const role = user?.role;
+  //const user = await getUserById(id);
+  //const userToken = user?.token;
+  //const role = user?.role;
   return (
     <section className="bg-black dark:bg-black">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

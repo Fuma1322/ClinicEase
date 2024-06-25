@@ -20,11 +20,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { UserRole } from "@prisma/client";
+//import { UserRole } from "@prisma/client";
 import { Input } from "../ui/input";
-import Link from "next/link";
+//import Link from "next/link";
 import { getApplicationByTrackingNumber } from "@/actions/registry";
 import SubmitButton from "../FormInputs/SubmitButton";
+import { useOnboardingContext } from "@/context/context";
  
 const FormSchema = z.object({
   trackingNumber: z.string().min(2, {
@@ -34,6 +35,7 @@ const FormSchema = z.object({
 
  
 export default function TrackingForm() {
+  const {savedDBData, setSavedDBData} = useOnboardingContext()
   const [loading, setLoading] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   
@@ -51,6 +53,8 @@ export default function TrackingForm() {
     try {
       // make request
       const res = await getApplicationByTrackingNumber(data.trackingNumber)
+      //SAVE THIS TO THE CONTEXT API
+      setSavedDBData(res?.data)
       if (res?.status===404){
         setShowNotification(true)
         setLoading(false)

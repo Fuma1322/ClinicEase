@@ -1,6 +1,10 @@
-import { UserRole } from "@prisma/client";
+import { ClinicProfile, UserRole } from "@prisma/client";
 
-export type ServiceProps = { title: string; image: string; slug: string };
+export type ServiceProps = { 
+    title: string; 
+    image: string; 
+    slug: string 
+};
 
 export type RegisterInputProps = {
     fullName: string;
@@ -20,7 +24,7 @@ export type BasicInfoProps = {
     email: string;
     phone: string;
     address: string;
-    profilePicture?: string;
+    profilePicture: any;
     page: string;
     userId?: string | undefined;
     trackingNumber: string;
@@ -32,3 +36,10 @@ export type ClinicDetailsProps = {
     availability: string;
 
 }
+
+// Response type for getting application by tracking number
+export type GetApplicationByTrackingNumberResponse = {
+    data: ClinicProfile | null;
+    status: number;
+    error: string | null;
+  };
