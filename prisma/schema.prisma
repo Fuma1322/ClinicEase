@@ -57,6 +57,21 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
+model Availability {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  clinicProfileId         String   @db.ObjectId @unique
+  clinicProfile           ClinicProfile @relation(fields: [clinicProfileId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  monday        String[]
+  tuesday       String[]
+  wednesday     String[]
+  thursday      String[]
+  friday        String[]
+  saturday      String[]
+  sunday        String[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
  
 model ClinicProfile {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -66,7 +81,8 @@ model ClinicProfile {
   address       String 
   clinicName    String
   trackingNumber String @unique 
-  profilePicture String? 
+  profilePicture String?
+  availability   Availability? 
   userId         String   @db.ObjectId @unique
   user           User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade) 
   createdAt      DateTime  @default(now())
