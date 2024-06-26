@@ -33,6 +33,8 @@ export default function Monday({profile}:{profile:ClinicProfile|undefined|null})
       clinicProfileId: profile.id
     };
     console.log(data);
+   } else {
+    console.log("Id not set")
    }
   }
   const [loading, seLoading]=useState(false)
@@ -76,10 +78,10 @@ export default function Monday({profile}:{profile:ClinicProfile|undefined|null})
         {
           selectedTimes.length > 0 && (
             <div className="border-t border-gray-600 p-4 flex justify-between gap-6">
-            <Button onClick={handleSubmit}>Save Settings</Button>
+            <Button onClick={handleSubmit} className='bg-gray-900 text-white border border-gray-600'>Save Settings</Button>
             <button  onClick={clearAll} className="flex items-center px-3 border border-red-600 bg-gray-800 rounded-md text-sm gap-6 justify-center">
                   <span>Clear All</span>
-                  <X className='w-5 h-5 ml-2'/>
+                  <X className='w-5 h-5'/>
                 </button>
           </div>
           )

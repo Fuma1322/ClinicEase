@@ -76,12 +76,12 @@ export async function getApplicationByTrackingNumber(trackingNumber: string) {
         }
     }
 }
-export async function getClinicProfileById(id: string | undefined) {
-    if (id){
+export async function getClinicProfileById(userId: string | undefined) {
+    if (userId){
         try {
             const profile = await prismaClient.clinicProfile.findUnique({
                 where: {
-                    id,
+                    userId,
                 }
             });
         console.log(profile);
