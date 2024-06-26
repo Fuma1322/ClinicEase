@@ -18,11 +18,11 @@ export default async function page() {
     <TabsTrigger value="availability">Availability Settings</TabsTrigger>
     <TabsTrigger value="account">Account Settings</TabsTrigger>
   </TabsList>
-  <TabsContent value="account">Make changes to your account here.</TabsContent>
-  <TabsContent value="availability">
+  <TabsContent value="availability" className='w-full'>
     {/*Availability Form */}
     <AvailabilitySettings profile={profile?.data}/>
   </TabsContent>
+  <TabsContent value="account">Make changes to your account here.</TabsContent>
 </Tabs>
    </div>
 

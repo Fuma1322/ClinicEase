@@ -34,7 +34,7 @@ export default function AvailabilitySettings({profile,}:{profile:ClinicProfile|u
          control the content visibility and styling.</> 
          },
          {
-            title: "saturday",
+            title: "Saturday",
             component:<>Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
          control the content visibility and styling.</> 
          },
@@ -48,17 +48,17 @@ export default function AvailabilitySettings({profile,}:{profile:ClinicProfile|u
   return (
     <div>
         <p className='py-3'>Please Add the Availability for the Whole Week</p>
-     {
-        tabs.map((tab, i)=>{
-            return (
-                <Tabs key={i} aria-label="Tabs with underline" style="underline">
-                <Tabs.Item active title={tab.title}>
-                    {tab.component}
-                </Tabs.Item>
-              </Tabs>
-            );
-        })
-     }
+        <Tabs aria-label="Tabs with underline" style="underline">
+          {
+            tabs.map((tab, i)=>{
+                return (
+                    <Tabs.Item active title={tab.title}>
+                        {tab.component}
+                    </Tabs.Item>
+                );
+            })
+            }
+        </Tabs>
     </div>
   )
 }
