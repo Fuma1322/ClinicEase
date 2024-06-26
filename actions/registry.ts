@@ -82,7 +82,10 @@ export async function getClinicProfileById(userId: string | undefined) {
             const profile = await prismaClient.clinicProfile.findUnique({
                 where: {
                     userId,
-                }
+                },
+                include: {
+                    availability:true,
+                },
             });
         console.log(profile);
         return {
@@ -100,3 +103,43 @@ export async function getClinicProfileById(userId: string | undefined) {
     }
 }
 }
+export async function createAvailability(data: any) {
+    try {
+        const newAvail = await prismaClient.availability.create({
+            data});
+        console.log(newAvail);
+        return  newAvail;
+    } catch (error) {
+        console.log(error);
+        return {
+            data: null,
+            status: 500,
+            error: "Something went wrong"
+        };
+    }
+}
+export async function updateAvailabilityById(id: string |undefined, data:any ) {
+    if (id){
+    try {
+        const updateAva = await prismaClient.availability.update({
+           where: {
+                id,
+           },
+           data,
+        });
+        console.log(updateAva);
+        return {
+            data: updateAva,
+            status: 201,
+            error: null,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            data: null,
+            status: 500,
+            error: "Avaliability was not updated",
+        }
+    }
+}
+    }

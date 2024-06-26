@@ -3,6 +3,7 @@ import React from 'react'
 import { Tabs } from "flowbite-react";
 import Monday from './AvailabilityDays/Monday';
 import { ClinicProfile } from '@prisma/client';
+import Tuesday from './AvailabilityDays/Tuesday';
 
 
 export default function AvailabilitySettings({profile,}:{profile:ClinicProfile|undefined|null;}) {
@@ -15,8 +16,8 @@ export default function AvailabilitySettings({profile,}:{profile:ClinicProfile|u
         },
         {
             title: "Tuesday",
-            component:<>Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-         control the content visibility and styling.</> 
+            component:<Tuesday profile={profile}/>
+
          },
          {
             title: "Wednesday",

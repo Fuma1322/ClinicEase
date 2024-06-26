@@ -6,8 +6,9 @@ import { Loader, Plus, X } from 'lucide-react';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 
-export default function Monday({profile}:{profile:any}) {
+export default function Tuesday({profile}:{profile:any}) {
   const availability = profile?.availablity || "";
+  console.log(profile)
   const timesArray = [
     "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
     "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM",
@@ -37,7 +38,7 @@ export default function Monday({profile}:{profile:any}) {
    try {
     if (profile?.id && availability?.id){
       const data = {
-        monday: selectedTimes,
+        tuesday: selectedTimes,
         clinicProfileId: profile.id
       };
       await updateAvailabilityById(availability?.id,data);
@@ -51,6 +52,7 @@ export default function Monday({profile}:{profile:any}) {
         clinicProfileId: profile.id
       };
       await createAvailability(data);
+      toast.success("Settings created Successfully")
       setLoading(false)
      } else {
       console.log("Profile id not set")
