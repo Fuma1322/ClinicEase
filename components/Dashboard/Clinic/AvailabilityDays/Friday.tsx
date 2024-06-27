@@ -13,7 +13,7 @@ export default function Friday({profile}:{profile:any}) {
     "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
     "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM",
   ];
-  const [selectedTimes, setSelectedTimes]=useState(["7:00 AM"]);
+  const [selectedTimes, setSelectedTimes]=useState<string[]>([]);
   // console.log(selectedTimes);
   function handleAddTime(time:string){
     if (!selectedTimes.includes(time)){
@@ -100,9 +100,7 @@ export default function Friday({profile}:{profile:any}) {
             })
           }
         </div>
-        {
-          selectedTimes.length > 0 && (
-            <div className="border-t border-gray-600 p-4 flex justify-between gap-6">
+        <div className="border-t border-gray-600 p-4 flex justify-between gap-6">
            {loading? ( <Button disabled>
               <Loader className='animate-spin w-4 h-4'/>
               Saving Please wait...
@@ -113,9 +111,7 @@ export default function Friday({profile}:{profile:any}) {
                   <span>Clear All</span>
                   <X className='w-5 h-5'/>
                 </button>
-          </div>
-          )
-        }
+          </div> 
         </div>
     </div>
   )
