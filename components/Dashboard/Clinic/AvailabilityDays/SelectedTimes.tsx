@@ -11,8 +11,9 @@ loading:boolean;
 selectedTimes:string[];
 clearAll:()=>void;
 handleRemoveTime:(index:number)=> void
+day:string;
 };
-export default function SelectedTimes({timesArray,handleAddAll,handleAddTime,handleRemoveTime,handleSubmit,loading,selectedTimes,clearAll}:SelectedProps) {
+export default function SelectedTimes({day,timesArray,handleAddAll,handleAddTime,handleRemoveTime,handleSubmit,loading,selectedTimes,clearAll}:SelectedProps) {
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 border-gray-900 dark:border-gray-600 shadow rounded-md divide-x divide-gray-600'>
     <div className="p-4">
@@ -36,7 +37,7 @@ export default function SelectedTimes({timesArray,handleAddAll,handleAddTime,han
     </div>
     </div>
     <div className="p-4">
-    <h2 className='font-semibold'>Here is your selected Time</h2>
+    <h2 className='font-semibold'>Here is Availability for {day}</h2>
     <div className="py-6 grid grid-cols-3 gap-3">
       {
         selectedTimes.map((time, i)=>{
