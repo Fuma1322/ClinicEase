@@ -76,3 +76,38 @@ export async function getApplicationByTrackingNumber(trackingNumber: string) {
         }
     }
 }
+
+
+export async function completeProfileByTrackingNumber(trackingNumber: string) {
+    if (trackingNumber) {
+        try {
+            const existingProfile = await prismaClient.clinicProfile.findUnique({
+                where: {
+                    trackingNumber,
+                },
+            });
+            if (!existingProfile) {
+                return {
+                    data: null,
+                    status: 404,
+                    error: "Profile not found",
+                };
+            }
+
+            //send a welcome email
+
+            return {
+                data: existingProfile,
+                status: 200,
+                error: null
+            };
+        } catch (error) {
+            console.log(error);
+            return {
+                data: null,
+                status: 500,
+                error: "Data cannot be fetched"
+            };
+        }
+    }
+}
