@@ -4,6 +4,11 @@ import { Tabs } from "flowbite-react";
 import Monday from './AvailabilityDays/Monday';
 import { ClinicProfile } from '@prisma/client';
 import Tuesday from './AvailabilityDays/Tuesday';
+import Wednesday from './AvailabilityDays/Wednesday';
+import Thursday from './AvailabilityDays/Thursday';
+import Friday from './AvailabilityDays/Friday';
+import Saturday from './AvailabilityDays/Saturday';
+import Sunday from './AvailabilityDays/Sunday';
 
 
 export default function AvailabilitySettings({profile,}:{profile:ClinicProfile|undefined|null;}) {
@@ -21,29 +26,24 @@ export default function AvailabilitySettings({profile,}:{profile:ClinicProfile|u
          },
          {
             title: "Wednesday",
-            component:<>Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-         control the content visibility and styling.</> 
+            component:<Wednesday profile={profile}/> 
          },
          {
             title: "Thursday",
-            component:<>Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-         control the content visibility and styling.</> 
+            component:<Thursday profile={profile}/> 
          },
          {
             title: "Friday",
-            component:<>Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-         control the content visibility and styling.</> 
+            component:<Friday profile={profile}/> 
          },
          {
             title: "Saturday",
-            component:<>Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-         control the content visibility and styling.</> 
+            component:<Saturday profile={profile}/> 
          },
          {
             title: "Sunday",
             active:false,
-            component:<>Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-         control the content visibility and styling.</> 
+            component:<Sunday profile={profile}/> 
          },
     ]
   return (

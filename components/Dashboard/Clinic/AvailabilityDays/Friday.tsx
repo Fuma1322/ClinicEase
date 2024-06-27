@@ -6,7 +6,7 @@ import { Loader, Plus, X } from 'lucide-react';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 
-export default function Tuesday({profile}:{profile:any}) {
+export default function Friday({profile}:{profile:any}) {
   const availability = profile?.availablity || "";
   console.log(profile)
   const timesArray = [
@@ -38,7 +38,7 @@ export default function Tuesday({profile}:{profile:any}) {
    try {
     if (profile?.id && availability?.id){
       const data = {
-        tuesday: selectedTimes,
+        friday: selectedTimes,
         clinicProfileId: profile.id
       };
       await updateAvailabilityById(availability?.id,data);
@@ -48,7 +48,7 @@ export default function Tuesday({profile}:{profile:any}) {
      } else if (profile?.id){
       console.log("Id not set")
       const data = {
-        tuesday: selectedTimes,
+        friday: selectedTimes,
         clinicProfileId: profile.id
       };
       await createAvailability(data);
