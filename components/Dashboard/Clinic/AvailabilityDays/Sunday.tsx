@@ -6,14 +6,15 @@ import { Loader, Plus, X } from 'lucide-react';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 
-export default function Sunday({profile}:{profile:any}) {
+export default function Sunday({profile,day}:{profile:any,day:string}) {
   const availability = profile?.availablity || "";
-  console.log(profile)
+  const initialData:string[] = profile?.availability[day] || [];
+  // console.log(profile)
   const timesArray = [
     "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
     "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM",
   ];
-  const [selectedTimes, setSelectedTimes]=useState<string[]>([]);
+  const [selectedTimes, setSelectedTimes]=useState<string[]>(initialData);
   // console.log(selectedTimes);
   function handleAddTime(time:string){
     if (!selectedTimes.includes(time)){
@@ -44,9 +45,9 @@ export default function Sunday({profile}:{profile:any}) {
       await updateAvailabilityById(availability?.id,data);
       setLoading(false)
       toast.success("Settings Updated Successfully")
-      console.log(data);
+      // console.log(data);
      } else if (profile?.id){
-      console.log("Id not set")
+      // console.log("Id not set")
       const data = {
         sunday: selectedTimes,
         clinicProfileId: profile.id
@@ -55,7 +56,7 @@ export default function Sunday({profile}:{profile:any}) {
       toast.success("Settings created Successfully")
       setLoading(false)
      } else {
-      console.log("Profile id not set")
+      // console.log("Profile id not set")
      }
    } catch (error) {
     setLoading(false)

@@ -12,38 +12,39 @@ import Sunday from './AvailabilityDays/Sunday';
 
 
 export default function AvailabilitySettings({profile,}:{profile:ClinicProfile|undefined|null;}) {
+   console.log(profile);
     const tabs = [
         {
            title: "Monday",
            component:
-           <Monday profile={profile}/>
+           <Monday profile={profile} day='monday'/>
 
         },
         {
             title: "Tuesday",
-            component:<Tuesday profile={profile}/>
+            component:<Tuesday profile={profile} day='tuesday'/>
 
          },
          {
             title: "Wednesday",
-            component:<Wednesday profile={profile}/> 
+            component:<Wednesday profile={profile} day='wednesday'/> 
          },
          {
             title: "Thursday",
-            component:<Thursday profile={profile}/> 
+            component:<Thursday profile={profile} day='thursday'/> 
          },
          {
             title: "Friday",
-            component:<Friday profile={profile}/> 
+            component:<Friday profile={profile} day='friday'/> 
          },
          {
             title: "Saturday",
-            component:<Saturday profile={profile}/> 
+            component:<Saturday profile={profile} day='saturday'/> 
          },
          {
             title: "Sunday",
             active:false,
-            component:<Sunday profile={profile}/> 
+            component:<Sunday profile={profile} day='sunday'/> 
          },
     ]
   return (
