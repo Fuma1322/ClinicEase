@@ -104,7 +104,7 @@ model ClinicProfile {
   trackingNumber String @unique 
   profilePicture String?
   availability   Availability?
-  Specialization String?
+  specialization String?
   servicesOffered String[]
   clinicHours    Int? 
   userId         String   @db.ObjectId @unique

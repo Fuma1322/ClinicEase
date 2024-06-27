@@ -28,12 +28,16 @@ export type BasicInfoProps = {
     page: string;
     userId?: string | undefined;
     trackingNumber: string;
+    
 }
 
 export type ClinicDetailsProps = { 
     page: string;
     duration: string;
     availability: string;
+    specialization:string;
+    servicesOffered:string;
+    clinicHours:number;
 
 }
 
