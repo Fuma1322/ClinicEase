@@ -16,7 +16,7 @@ export async function createClinicProfile(formdata: any) {
         page, 
         phone, 
         trackingNumber, 
-        userId
+        userId,
         availability,
         specialization,
         servicesOffered,
@@ -33,7 +33,7 @@ export async function createClinicProfile(formdata: any) {
                 trackingNumber, 
                 userId,
                 availability,
-                specialization,
+                speciality,
                 servicesOffered,
                 clinicHours
             },

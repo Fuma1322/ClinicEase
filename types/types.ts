@@ -36,7 +36,7 @@ export type ClinicDetailsProps = {
     duration: string;
     availability: string;
     specialization:string;
-    servicesOffered:string;
+    servicesOffered:string[];
     clinicHours:number;
 
 }

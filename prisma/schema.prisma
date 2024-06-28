@@ -54,6 +54,10 @@ model User {
   clinicProfile ClinicProfile?
   isVerfied     Boolean   @default(false)
   token         Int
+
+ serviceId         String   @db.ObjectId @unique
+  service           Service @relation(fields: [serviceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
@@ -110,8 +114,7 @@ model ClinicProfile {
   userId         String   @db.ObjectId @unique
   user           User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  serviceId         String   @db.ObjectId @unique
-  service           Service @relation(fields: [serviceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+ 
   specialityId         String   @db.ObjectId @unique
   speciality           Speciality @relation(fields: [specialityId], references: [id], onDelete: Cascade, onUpdate: Cascade) 
   createdAt      DateTime  @default(now())
