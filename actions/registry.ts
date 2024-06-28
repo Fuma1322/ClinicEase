@@ -1,11 +1,6 @@
 "use server"
 
 import { prismaClient } from "@/lib/db";
-import { BasicInfoProps, RegisterInputProps } from "@/types/types";
-import bcrypt from "bcrypt";
-import { Resend } from "resend";
-import EmailTemplate from "@/components/Emails/emailstemplate";
-import { error } from "console";
 
 export async function createClinicProfile(formdata: any) {
     // const resend = new Resend(process.env.RESEND_API_KEY);
@@ -16,11 +11,8 @@ export async function createClinicProfile(formdata: any) {
         page, 
         phone, 
         trackingNumber, 
-        userId,
-        availability,
-        specialization,
-        servicesOffered,
-        clinicHours,
+        userId
+        
     } = formdata;
     try {
         const newProfile = await prismaClient.clinicProfile.create({
@@ -31,11 +23,7 @@ export async function createClinicProfile(formdata: any) {
                 page, 
                 phone, 
                 trackingNumber, 
-                userId,
-                availability,
-                speciality,
-                servicesOffered,
-                clinicHours
+                userId
             },
         });
         console.log(newProfile);
