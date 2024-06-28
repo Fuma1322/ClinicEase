@@ -13,6 +13,7 @@ import { useOnboardingContext } from "@/context/context";
 import { StepFormprops } from "./BasicInfoForm";
 import toast from "react-hot-toast"; // For showing success or error messages
 import { createClinicProfile } from "@/actions/registry";
+import { SelectInput } from "../FormInputs/SelectInput";
 
 export default function ClinicDetails({
   page, 
@@ -65,6 +66,8 @@ export default function ClinicDetails({
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="mx-auto py-4 px-4">
         <div className="grid gap-4 grid-cols-2">
+
+        <SelectInput />
           <TextInput 
             label="What Is The Duration For Your Meetings" 
             register={register} 

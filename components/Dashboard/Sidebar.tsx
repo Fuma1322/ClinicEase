@@ -31,6 +31,8 @@ export default function Sidebar() {
       {title:"Clincs", path:"/dashboard/clinic", icon: Users},
       {title:"Patients", path:"/dashboard/patients", icon: Users},
       {title:"Apointments", path:"/dashboard/appointments", icon: Users},
+      {title:"Services", path:"/dashboard/clinic/services", icon: Users},
+      {title:"Speciality", path:"/dashboard/clinic/speciality", icon: Users},
       {title:"Settings", path:"/dashboard/settings", icon: SettingsIcon}
     ]
   }
