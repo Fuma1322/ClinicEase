@@ -4,12 +4,17 @@ import React from 'react'
 import Link from "next/link"
 import {
     Bell,
+    Home,
     Hospital,
     LucideHome,
     Settings,
+    Settings2Icon,
+    SettingsIcon,
+    User,
     UserCircle2Icon,
     UserPlus2Icon,
     Users,
+    UsersIcon,
   } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button" 
@@ -17,6 +22,20 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
  
 export default function Sidebar() {
+  const roles ={
+    USER: [
+
+    ],
+    ADMIN: [
+      {title:"Dashboard", path:"/dashboard", icon: Home},
+      {title:"Clincs", path:"/dashboard/clinic", icon: Users},
+      {title:"Patients", path:"/dashboard/patients", icon: Users},
+      {title:"Apointments", path:"/dashboard/appointments", icon: Users},
+      {title:"Services", path:"/dashboard/clinic/services", icon: Users},
+      {title:"Speciality", path:"/dashboard/clinic/speciality", icon: Users},
+      {title:"Settings", path:"/dashboard/settings", icon: SettingsIcon}
+    ]
+  }
   const pathName = usePathname()
   const sideBarLinks =[
     {
